@@ -221,14 +221,31 @@ pre {
   text-align: center;
   color: #fff;
   text-shadow: 2px 2px 4px #000000;
-  background: url(../img/intro-bg.jpg) no-repeat bottom center scroll;
+  background: no-repeat bottom center scroll;
   background-color: #000;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   background-size: cover;
   -o-background-size: cover;
 }
-
+.intro.round0 {
+  background-image: url(../img/bas-van-der-horst-H-1MzXNAXQI-unsplash.jpg)
+}
+.intro.round1 {
+  background-image: url(../img/eduardo-drapier-YHdztOlV9bc-unsplash.jpg)
+}
+.intro.round2 {
+  background-image: url(../img/greta-farnedi-7BXqClUbbQA-unsplash.jpg)
+}
+.intro.round3 {
+  background-image: url(../img/intro-bg.jpg)
+}
+.intro.round4 {
+  background-image: url(../img/katrin-hauf-4c9C1ocYcoQ-unsplash.jpg)
+}
+.intro.round5 {
+  background-image: url(../img/paolo-lentini-edtah6S-96A-unsplash.jpg)
+}
 .intro h3 {
   margin-bottom: 2em;
 }
