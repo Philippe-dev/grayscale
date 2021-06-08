@@ -13,7 +13,6 @@
  * @copyright Apache License v2.0
  */
 
-
 /* ------------------------------------------------------------
 	1. HTML
 ------------------------------------------------------------- */
@@ -204,6 +203,7 @@ pre {
 /* ------------------------------------------------------------
 	3. HEADER
 ------------------------------------------------------------- */
+
 .masthead {
   font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
   text-shadow: 1px 1px 2px #000000;
@@ -212,6 +212,10 @@ pre {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+}
+
+.masthead a {
+  text-decoration: none
 }
 
 .masthead.round0 {
@@ -319,8 +323,6 @@ pre {
   }
 }
 
-
-
 /* ------------------------------------------------------------
 	4. CONTENT
 ------------------------------------------------------------- */
@@ -328,7 +330,6 @@ pre {
 #content {
   width: 100%;
   padding: 2em 10% 6em;
-
   font-weight: normal
 }
 
@@ -372,7 +373,6 @@ pre {
   }
 
   .blog-section a {
-
     color: #fff;
   }
 }
@@ -406,7 +406,6 @@ pre {
   text-decoration: none;
 }
 
-
 .post h3,
 .post h4,
 .post h5,
@@ -416,7 +415,6 @@ pre {
   margin: 1.5em 0 0.5em;
 }
 
-
 .post-infos {
   margin-bottom: 8em;
   padding: 0;
@@ -425,7 +423,8 @@ pre {
   width: 100%;
   height: auto;
   border: 1px solid #ddd;
-  background: #eee
+  background: #eee;
+  display: flex
 }
 
 .dc-post .post-infos {
@@ -441,7 +440,6 @@ pre {
   border: 1px solid #ccc;
   max-width: 96%;
   padding: 2px;
-
 }
 
 @media(min-width:768px) {
@@ -641,11 +639,9 @@ img.smiley {
   padding-bottom: .2em;
   line-height: 1.25;
   color: #555;
-
 }
 
 #comments .me {
-
   color: #333;
 }
 
@@ -665,10 +661,10 @@ img.smiley {
   font-size: 0.875em;
 }
 
-
 /* ------------------------------------------------------------
 	5. BUTTONS
 ------------------------------------------------------------- */
+
 .btn {
   border-radius: 0;
   text-transform: uppercase;
@@ -749,10 +745,10 @@ img.smiley {
   animation-timing-function: linear;
 }
 
-
 /* ------------------------------------------------------------
 	6. FORMS
 ------------------------------------------------------------- */
+
 #post-comments,
 #pings,
 #attachments,
@@ -899,25 +895,11 @@ img.smiley {
   #blogcustom {
     margin-top: 5em
   }
-
 }
-
 
 /* ------------------------------------------------------------
 	8. FOOTER
 ------------------------------------------------------------- */
-
-ul.banner-social-buttons {
-  margin: 5em 0 1em 0;
-}
-
-@media(max-width:767px) {
-  ul.banner-social-buttons li {
-    display: block;
-    margin: 2em 0;
-    padding: 0;
-  }
-}
 
 footer {
   padding: 3em
