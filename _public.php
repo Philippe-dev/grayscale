@@ -33,13 +33,13 @@ class grayscalePublic
             $s = [];
         }
 
-        if (!isset($s['random-image'])) {
-            $s['random-image'] = 1;
+        if (!isset($s['default-image'])) {
+            $s['default-image'] = 1;
         }
         
         $grayscale_random_css_url = $GLOBALS['core']->blog->settings->system->themes_url."/".$GLOBALS['core']->blog->settings->system->theme."/css/random.css";
 
-        if ($s['random-image'] == 1) {
+        if ($s['default-image'] == 1) {
             return;
         } else {
             echo
@@ -57,11 +57,11 @@ class grayscalePublic
             $s = [];
         }
 
-        if (!isset($s['random-image'])) {
-            $s['random-image'] = 1;
+        if (!isset($s['default-image'])) {
+            $s['default-image'] = 1;
         }
 
-        if ($s['random-image'] == 1) {
+        if ($s['default-image'] == 1) {
             return;
         } else {
             echo

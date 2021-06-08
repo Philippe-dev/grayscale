@@ -25,8 +25,8 @@ if (!is_array($s)) {
     $s = [];
 }
 
-if (!isset($s['random-image'])) {
-    $s['random-image'] = 1;
+if (!isset($s['default-image'])) {
+    $s['default-image'] = 1;
 }
 
 
@@ -38,7 +38,7 @@ if (file_exists(dirname(__FILE__) . '/locales/' . $_lang . '/resources.php')) {
 if (!empty($_POST)) {
     try {
         # HTML
-        $s['random-image'] = $_POST['random-image'];
+        $s['default-image'] = $_POST['default-image'];
         
         $core->blog->settings->addNamespace('themes');
         $core->blog->settings->themes->put($core->blog->settings->system->theme . '_random', serialize($s));
@@ -64,11 +64,11 @@ echo '<form id="theme_config" action="' . $core->adminurl->get('admin.blog.theme
     
 echo '<h4 class="pretty-title">' . __('Main background image') . '</h4>';
 
-echo '<p><label class="classic" for="random-image-1">'.
-    form::radio(array('random-image','random-image-1'), true, $s['random-image']).
+echo '<p><label class="classic" for="default-image-1">'.
+    form::radio(array('default-image','default-image-1'), true, $s['default-image']).
     __('default image').'</label></p>'.
-    '<p><label class="classic" for="random-image-2">'.
-    form::radio(array('random-image','random-image-2'), false, !$s['random-image']).
+    '<p><label class="classic" for="default-image-2">'.
+    form::radio(array('default-image','default-image-2'), false, !$s['default-image']).
     __('random image').'</label></p>';
 
 echo '<p class="clear"><input type="submit" value="' . __('Save') . '" />' . $core->formNonce() . '</p>';
