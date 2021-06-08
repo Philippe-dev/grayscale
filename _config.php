@@ -5,8 +5,8 @@
  * @package Dotclear
  * @subpackage Themes
  *
- * @copyright Philippe aka amalgame
- * @copyright GPL-2.0-only
+ * @author Philippe aka amalgame and contributors
+ * @copyright GPL-2.0
  */
 
 

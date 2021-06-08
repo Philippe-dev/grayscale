@@ -1,3 +1,14 @@
+@charset "UTF-8";
+/**
+ * @brief Grayscale, a theme for Dotclear 2
+ *
+ * @package Dotclear
+ * @subpackage Themes
+ *
+ * @author Philippe aka amalgame and contributors
+ * @copyright GPL-2.0
+ */
+
 .masthead {
     background-image: none;
 }
