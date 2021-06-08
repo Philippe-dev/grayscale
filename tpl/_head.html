@@ -14,10 +14,5 @@
   <script src="{{tpl:BlogQmarkURL}}pf={{tpl:BlogJsJQuery}}/jquery.js"></script>
 </tpl:SysIf>
 <script src="{{tpl:BlogQmarkURL}}pf=util.js"></script>
-<script>
-$(document).ready(function() {
-var round = parseInt(Math.random()*6);
-	$('header.masthead').addClass('round'+round);
-});
-</script>
+
 {{tpl:SysBehavior behavior="publicHeadContent"}}

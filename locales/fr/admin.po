@@ -1,0 +1,17 @@
+msgid "Category"
+msgstr "Catégorie"
+
+msgid "Categories"
+msgstr "Catégories"
+
+msgid "Theme configuration upgraded."
+msgstr "La configuration du thème a été mise à jour."
+
+msgid "Main background image"
+msgstr "Image de fond"
+
+msgid "default image"
+msgstr "image par défaut"
+
+msgid "random image"
+msgstr "image aléatoire"

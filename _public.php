@@ -11,12 +11,71 @@
  * @copyright GPL-2.0
  */
 
-if (!defined('DC_RC_PATH')) { return; }
+if (!defined('DC_RC_PATH')) {
+    return;
+}
 
 l10n::set(dirname(__FILE__).'/locales/'.$_lang.'/main');
 
+$core->addBehavior('publicHeadContent', array('grayscalePublic','publicHeadContent'));
+$core->addBehavior('publicFooterContent', array('grayscalePublic','publicFooterContent'));
+
 # Simple menu template functions
 $core->tpl->addValue('GrayscaleSimpleMenu', ['tplGrayscaleSimpleMenu', 'GrayscaleSimpleMenu']);
+
+class grayscalePublic
+{
+    public static function publicHeadContent($core)
+    {
+        # Settings
+        $s = $GLOBALS['core']->blog->settings->themes->get($GLOBALS['core']->blog->settings->system->theme . '_random');
+        $s = @unserialize($s);
+
+        if (!is_array($s)) {
+            $s = [];
+        }
+
+        if (!isset($s['random-image'])) {
+            $s['random-image'] = 1;
+        }
+        
+        $grayscale_random_css_url = $GLOBALS['core']->blog->settings->system->themes_url."/".$GLOBALS['core']->blog->settings->system->theme."/css/random.css";
+
+        if ($s['random-image'] == 1) {
+            return;
+        } else {
+            echo
+            "<link rel='stylesheet' type='text/css' href='". $grayscale_random_css_url ."' media='screen' />";
+        }
+    }
+    public static function publicFooterContent($core)
+    {
+        
+        # Settings
+        $s = $GLOBALS['core']->blog->settings->themes->get($GLOBALS['core']->blog->settings->system->theme . '_random');
+        $s = @unserialize($s);
+
+        if (!is_array($s)) {
+            $s = [];
+        }
+
+        if (!isset($s['random-image'])) {
+            $s['random-image'] = 1;
+        }
+
+        if ($s['random-image'] == 1) {
+            return;
+        } else {
+            echo
+        '<script>'."\n".
+            "$(document).ready(function() {
+            var round = parseInt(Math.random()*6);
+                $('header.masthead').addClass('round'+round);
+            });".
+        "</script>\n";
+        }
+    }
+}
 
 class tplGrayscaleSimpleMenu
 {
