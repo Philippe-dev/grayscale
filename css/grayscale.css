@@ -90,6 +90,19 @@ pre {
 	2. SIMPLE MENU
 ------------------------------------------------------------- */
 
+.navbar-toggler {
+  padding: 0.25rem;
+  font-size: 1.25rem;
+  line-height: 1;
+  background-color: transparent;
+  border: 1px solid #fff;
+  border-radius: 0.25rem;
+  position: fixed;
+  right: 1rem;
+  top: .8rem;
+  color: #fff;
+}
+
 .navbar-custom {
   margin-bottom: 0;
   border-bottom: 1px solid rgba(255, 255, 255, .3);
