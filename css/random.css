@@ -1,0 +1,62 @@
+@charset "UTF-8";
+/**
+ * @brief Grayscale, a theme for Dotclear 2
+ *
+ * @package Dotclear
+ * @subpackage Themes
+ *
+ * @author Philippe aka amalgame and contributors
+ * @copyright GPL-2.0
+ */
+
+.masthead {
+    background-image: none;
+}
+
+.masthead.round0 {
+    background: #555 url(../img/bg-masthead-0.jpg);
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.masthead.round1 {
+    background: #555 url(../img/bg-masthead-1.jpg);
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.masthead.round2 {
+    background: #555 url(../img/bg-masthead-2.jpg);
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.masthead.round3 {
+    background: #555 url(../img/bg-masthead-3.jpg);
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.masthead.round4 {
+    background: #555 url(../img/bg-masthead-4.jpg);
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.masthead.round5 {
+    background: #555 url(../img/bg-masthead-5.jpg);
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
