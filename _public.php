@@ -15,6 +15,7 @@ if (!defined('DC_RC_PATH')) {
 
 l10n::set(dirname(__FILE__).'/locales/'.$_lang.'/main');
 
+# Grayscale random image CSS and js files
 $core->addBehavior('publicHeadContent', array('grayscalePublic','publicHeadContent'));
 $core->addBehavior('publicFooterContent', array('grayscalePublic','publicFooterContent'));
 
