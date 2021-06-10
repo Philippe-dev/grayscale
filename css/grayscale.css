@@ -89,6 +89,7 @@ pre {
 .navbar-custom .svg-inline--fa,
 .intro .svg-inline--fa {
   filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, .7));
+  vertical-align: middle;
 }
 
 /* ------------------------------------------------------------
