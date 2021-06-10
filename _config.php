@@ -29,6 +29,10 @@ if (!isset($s['default-image'])) {
     $s['default-image'] = 1;
 }
 
+if (!isset($s['user-default-image'])) {
+    $s['user-default-image'] = $GLOBALS['core']->blog->settings->system->themes_url."/".$GLOBALS['core']->blog->settings->system->theme."/img/intro-bg.jpg";;
+}
+
 
 // Load contextual help
 if (file_exists(dirname(__FILE__) . '/locales/' . $_lang . '/resources.php')) {
@@ -38,6 +42,7 @@ if (file_exists(dirname(__FILE__) . '/locales/' . $_lang . '/resources.php')) {
 if (!empty($_POST)) {
     try {
         # HTML
+        $s['default-image'] = $_POST['default-image'];
         $s['default-image'] = $_POST['default-image'];
         
         $core->blog->settings->addNamespace('themes');
@@ -70,6 +75,20 @@ echo '<p><label class="classic" for="default-image-1">'.
     '<p><label class="classic" for="default-image-2">'.
     form::radio(array('default-image','default-image-2'), false, !$s['default-image']).
     __('random image').'</label></p>';
+
+echo '<h4 class="pretty-title">' . __('Default image') . '</h4>';
+
+echo '<p> ' .
+    '<img alt="' . __('Image URL:') . ' " src="'. $s['user-default-image'] .'" width="400" />' .
+    '</p>';
+
+echo '<p><label for="user-default-image" class="classic">' . __('Image URL:') . '</label> ' .
+    form::field('user-default-image', 30, 255, html::escapeHTML($s['user-default-image'])) .
+    '</p>';
+
+echo 
+    '<p class="s-featuredmedia"><a href="' . $core->adminurl->get('admin.media.item', ['popup' => 1, 'select' => 1, 'file' => NULL]) . '">' .
+    __('Add a featured media for this entry') . '</a></p>';
 
 echo '<p class="clear"><input type="submit" value="' . __('Save') . '" />' . $core->formNonce() . '</p>';
 echo '</form>';
