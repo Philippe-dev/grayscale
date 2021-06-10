@@ -69,7 +69,7 @@ class grayscalePublic
         '<script>'."\n".
             "$(document).ready(function() {
             var round = parseInt(Math.random()*6);
-                $('header.masthead').addClass('round'+round);
+                $('header.intro').addClass('round'+round);
             });".
         "</script>\n";
         }

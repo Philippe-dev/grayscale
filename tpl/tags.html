@@ -23,7 +23,7 @@
 	{{tpl:include src="_top.html"}}
 
 	<!-- Intro Header -->
-	<header class="masthead">
+	<header class="intro">
 		<div class="container px-4 px-lg-5 d-flex h-100 align-items-center justify-content-center">
 			<div class="d-flex justify-content-center">
 				<div class="text-center">
@@ -32,7 +32,7 @@
 					<a href="#content" class="btn btn-circle page-scroll">
 						<i class="fa fa-angle-double-down animated"></i>
 					</a>
-					<ul class="rss masthead-footer">
+					<ul class="rss intro-footer">
 						<li><a type="application/atom+xml" href="{{tpl:BlogURL}}feed/atom" title="{{tpl:lang Entries feed}}" class="feed"><i class="fa fa-rss"></i> {{tpl:lang Entries feed}}</a></li>
 
 						<tpl:SysIf operator="or" comments_active="1" pings_active="1">

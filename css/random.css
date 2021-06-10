@@ -9,42 +9,42 @@
  * @copyright GPL-2.0
  */
 
-.masthead {
+.intro {
     background-image: none;
 }
 
-.masthead.round0 {
-    background: #555 url(../img/bg-masthead-0.jpg);
+.intro.round0 {
+    background: #555 url(../img/bg-intro-0.jpg);
     background-size: cover;
     background-position: center;
 }
 
-.masthead.round1 {
-    background: #555 url(../img/bg-masthead-1.jpg);
+.intro.round1 {
+    background: #555 url(../img/bg-intro-1.jpg);
     background-size: cover;
     background-position: center;
 }
 
-.masthead.round2 {
-    background: #555 url(../img/bg-masthead-2.jpg);
+.intro.round2 {
+    background: #555 url(../img/bg-intro-2.jpg);
     background-size: cover;
     background-position: center;
 }
 
-.masthead.round3 {
-    background: #555 url(../img/bg-masthead-3.jpg);
+.intro.round3 {
+    background: #555 url(../img/bg-intro-3.jpg);
     background-size: cover;
     background-position: center;
 }
 
-.masthead.round4 {
-    background: #555 url(../img/bg-masthead-4.jpg);
+.intro.round4 {
+    background: #555 url(../img/bg-intro-4.jpg);
     background-size: cover;
     background-position: center;
 }
 
-.masthead.round5 {
-    background: #555 url(../img/bg-masthead-5.jpg);
+.intro.round5 {
+    background: #555 url(../img/bg-intro-5.jpg);
     background-size: cover;
     background-position: center;
 }

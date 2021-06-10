@@ -12143,7 +12143,7 @@ body {
   border: 0;
 }
 
-.masthead {
+.intro {
   position: relative;
   width: 100%;
   height: auto;
@@ -12156,42 +12156,42 @@ body {
   background-size: cover;
 }
 
-.masthead h1,
-.masthead .h1 {
+.intro h1,
+.intro .h1 {
   font-size: 2rem;
   line-height: 2rem;
   color: #fff
 }
 
-.masthead h2,
-.masthead .h2 {
+.intro h2,
+.intro .h2 {
   max-width: 20rem;
   font-size: 1.2rem;
 }
 
 @media (min-width: 768px) {
 
-  .masthead h1,
-  .masthead .h1 {
+  .intro h1,
+  .intro .h1 {
     font-size: 2.5rem;
     line-height: 2.5rem;
   }
 }
 
 @media (min-width: 992px) {
-  .masthead {
+  .intro {
     height: 100vh;
     padding: 0;
   }
 
-  .masthead h1,
-  .masthead .h1 {
+  .intro h1,
+  .intro .h1 {
     font-size: 3.5rem;
     line-height: 3.5rem;
   }
 
-  .masthead h2,
-  .masthead .h2 {
+  .intro h2,
+  .intro .h2 {
     max-width: 30rem;
     font-size: 1.25rem;
   }
