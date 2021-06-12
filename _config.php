@@ -29,10 +29,14 @@ if (!isset($s['default-image'])) {
     $s['default-image'] = 1;
 }
 
-if (!isset($s['user-default-image'])) {
-    $s['user-default-image'] = $GLOBALS['core']->blog->settings->system->themes_url."/".$GLOBALS['core']->blog->settings->system->theme."/img/intro-bg.jpg";;
-}
+$default_image_s = $GLOBALS['core']->blog->settings->system->themes_url."/".$GLOBALS['core']->blog->settings->system->theme."/img/.intro-bg_s.jpg";;
 
+/*
+if (!isset($s['user-default-image'])) {
+    $s['user-default-image'] = $GLOBALS['core']->blog->settings->system->themes_url."/".$GLOBALS['core']->blog->settings->system->theme."/img/intro-bg.jpg";
+    ;
+}
+*/
 
 // Load contextual help
 if (file_exists(dirname(__FILE__) . '/locales/' . $_lang . '/resources.php')) {
@@ -43,7 +47,7 @@ if (!empty($_POST)) {
     try {
         # HTML
         $s['default-image'] = $_POST['default-image'];
-        $s['default-image'] = $_POST['default-image'];
+        
         
         $core->blog->settings->addNamespace('themes');
         $core->blog->settings->themes->put($core->blog->settings->system->theme . '_random', serialize($s));
@@ -64,34 +68,39 @@ if (!empty($_POST)) {
 if (!$standalone_config) {
     echo '</form>';
 }
-echo '<form id="theme_config" action="' . $core->adminurl->get('admin.blog.theme', ['conf' => '1']) .
+    echo '<form id="theme_config" action="' . $core->adminurl->get('admin.blog.theme', ['conf' => '1']) .
     '" method="post" enctype="multipart/form-data">';
     
-echo '<h4 class="pretty-title">' . __('Main background image') . '</h4>';
+    echo '<h3>' . __('Behavior') . '</h3>';
 
-echo '<p><label class="classic" for="default-image-1">'.
+    echo '<h4 class="pretty-title">' . __('Main background image') . '</h4>';
+
+    echo '<p><label class="classic" for="default-image-1">'.
     form::radio(array('default-image','default-image-1'), true, $s['default-image']).
     __('default image').'</label></p>'.
     '<p><label class="classic" for="default-image-2">'.
     form::radio(array('default-image','default-image-2'), false, !$s['default-image']).
     __('random image').'</label></p>';
 
-echo '<h4 class="pretty-title">' . __('Default image') . '</h4>';
+    echo '<h3>' . __('Images') . '</h3>';
 
-echo '<p> ' .
-    '<img alt="' . __('Image URL:') . ' " src="'. $s['user-default-image'] .'" width="400" />' .
+    echo '<h4 class="pretty-title">' . __('Default image') . '</h4>';
+
+    echo '<p> ' .
+    '<img alt="' . __('Image URL:') . ' " src="'. $default_image_s .'" />' .
     '</p>';
 
-echo '<p><label for="user-default-image" class="classic">' . __('Image URL:') . '</label> ' .
+    echo '<p><label for="user-default-image" class="classic">' . __('Image URL:') . '</label> ' .
     form::field('user-default-image', 30, 255, html::escapeHTML($s['user-default-image'])) .
-    '</p>';
+    ' <button type="button" id="user-default-image-selector">' . __('Choose a media') . '</button>' .
+    '</p>' ;
 
-echo 
-    '<p class="s-featuredmedia"><a href="' . $core->adminurl->get('admin.media.item', ['popup' => 1, 'select' => 1, 'file' => NULL]) . '">' .
-    __('Add a featured media for this entry') . '</a></p>';
+    echo '<h4 class="pretty-title">' . __('Random images') . '</h4>';
 
-echo '<p class="clear"><input type="submit" value="' . __('Save') . '" />' . $core->formNonce() . '</p>';
-echo '</form>';
+    
+
+    echo '<p class="clear"><input type="submit" value="' . __('Save') . '" />' . $core->formNonce() . '</p>';
+    echo '</form>';
 
 
 dcPage::helpBlock('grayscale');
