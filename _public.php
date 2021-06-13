@@ -27,20 +27,20 @@ class grayscalePublic
     public static function publicHeadContent($core)
     {
         # Settings
-        $s = $GLOBALS['core']->blog->settings->themes->get($GLOBALS['core']->blog->settings->system->theme . '_random');
-        $s = @unserialize($s);
+        $sr = $GLOBALS['core']->blog->settings->themes->get($GLOBALS['core']->blog->settings->system->theme . '_random');
+        $sr = @unserialize($sr);
 
-        if (!is_array($s)) {
-            $s = [];
+        if (!is_array($sr)) {
+            $sr = [];
         }
 
-        if (!isset($s['default-image'])) {
-            $s['default-image'] = 1;
+        if (!isset($sr['default-image'])) {
+            $sr['default-image'] = 1;
         }
         
         $grayscale_random_css_url = $GLOBALS['core']->blog->settings->system->themes_url."/".$GLOBALS['core']->blog->settings->system->theme."/css/random.css";
 
-        if ($s['default-image'] == 1) {
+        if ($sr['default-image'] == 1) {
             return;
         } else {
             echo
@@ -51,18 +51,18 @@ class grayscalePublic
     {
         
         # Settings
-        $s = $GLOBALS['core']->blog->settings->themes->get($GLOBALS['core']->blog->settings->system->theme . '_random');
-        $s = @unserialize($s);
+        $sr = $GLOBALS['core']->blog->settings->themes->get($GLOBALS['core']->blog->settings->system->theme . '_random');
+        $sr = @unserialize($sr);
 
-        if (!is_array($s)) {
-            $s = [];
+        if (!is_array($sr)) {
+            $sr = [];
         }
 
-        if (!isset($s['default-image'])) {
-            $s['default-image'] = 1;
+        if (!isset($sr['default-image'])) {
+            $sr['default-image'] = 1;
         }
 
-        if ($s['default-image'] == 1) {
+        if ($sr['default-image'] == 1) {
             return;
         } else {
             echo

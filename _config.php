@@ -17,26 +17,38 @@ if (!defined('DC_CONTEXT_ADMIN')) {
 l10n::set(dirname(__FILE__) . '/locales/' . $_lang . '/admin');
 
 $standalone_config = (boolean) $core->themes->moduleInfo($core->blog->settings->system->theme, 'standalone_config');
+$theme_url = $GLOBALS['core']->blog->settings->system->themes_url."/".$GLOBALS['core']->blog->settings->system->theme;
 
-$s = $GLOBALS['core']->blog->settings->themes->get($GLOBALS['core']->blog->settings->system->theme . '_random');
-$s = @unserialize($s);
+# default or random image background
+$sr = $GLOBALS['core']->blog->settings->themes->get($GLOBALS['core']->blog->settings->system->theme . '_random');
+$sr = @unserialize($sr);
 
-if (!is_array($s)) {
-    $s = [];
+if (!is_array($sr)) {
+    $sr = [];
 }
 
-if (!isset($s['default-image'])) {
-    $s['default-image'] = 1;
+if (!isset($sr['default-image'])) {
+    $sr['default-image'] = 1;
 }
 
-$default_image_s = $GLOBALS['core']->blog->settings->system->themes_url."/".$GLOBALS['core']->blog->settings->system->theme."/img/.intro-bg_s.jpg";;
+# default or user defined images
+$si = $GLOBALS['core']->blog->settings->themes->get($GLOBALS['core']->blog->settings->system->theme . '_images');
+$si = @unserialize($si);
 
-/*
-if (!isset($s['user-default-image'])) {
-    $s['user-default-image'] = $GLOBALS['core']->blog->settings->system->themes_url."/".$GLOBALS['core']->blog->settings->system->theme."/img/intro-bg.jpg";
-    ;
+if (!isset($si['default-image-url'])) {
+    $si['default-image-url'] = $theme_url.'/img/intro-bg.jpg';
 }
-*/
+$parts = pathinfo($si['default-image-url']);
+$default_image_s = $parts['dirname'].'/.'.$parts['filename'].'_s.'.str_ireplace('jpeg','jpg', $parts['extension']);
+
+
+for ($i = 0; $i < 6; $i++) {
+    if (!isset($si['random-image-'.$i.'-url'])) {
+        $si['random-image-'.$i.'-url'] = $theme_url.'/img/bg-intro-'. $i .'.jpg';
+    }
+    $parts = pathinfo($si['random-image-'.$i.'-url']);
+    ${'random-image-' . $i . '-small-url'} = $parts['dirname'].'/.'.$parts['filename'].'_s.'.str_ireplace('jpeg','jpg', $parts['extension']);
+}
 
 // Load contextual help
 if (file_exists(dirname(__FILE__) . '/locales/' . $_lang . '/resources.php')) {
@@ -45,12 +57,30 @@ if (file_exists(dirname(__FILE__) . '/locales/' . $_lang . '/resources.php')) {
 
 if (!empty($_POST)) {
     try {
-        # HTML
-        $s['default-image'] = $_POST['default-image'];
+        $sr['default-image'] = $_POST['default-image'];
+
         
-        
+        if (!empty($_POST['default-image-url'])) {
+            $si['default-image-url'] = $_POST['default-image-url'];
+        } else {
+            $si['default-image-url'] = $theme_url.'/img/intro-bg.jpg';
+        }
+
+        $parts = pathinfo($si['default-image-url']);
+        $default_image_s = $parts['dirname'].'/.'.$parts['filename'].'_s.'.str_ireplace('jpeg','jpg', $parts['extension']);
+
+        for ($i = 0; $i < 6; $i++) {
+            if (!empty($_POST['random-image-'.$i.'-url'])) {
+                $si['random-image-'.$i.'-url'] = $_POST['random-image-'.$i.'-url'];
+            } else {
+                $si['random-image-'.$i.'-url'] = $theme_url.'/img/bg-intro-'. $i .'.jpg';
+            }
+            $parts = pathinfo($si['random-image-'.$i.'-url']);
+            ${'random-image-' . $i . '-small-url'} = $parts['dirname'].'/.'.$parts['filename'].'_s.'.str_ireplace('jpeg','jpg', $parts['extension']);
+        }
         $core->blog->settings->addNamespace('themes');
-        $core->blog->settings->themes->put($core->blog->settings->system->theme . '_random', serialize($s));
+        $core->blog->settings->themes->put($core->blog->settings->system->theme . '_random', serialize($sr));
+        $core->blog->settings->themes->put($core->blog->settings->system->theme . '_images', serialize($si));
 
         // Blog refresh
         $core->blog->triggerBlog();
@@ -76,28 +106,51 @@ if (!$standalone_config) {
     echo '<h4 class="pretty-title">' . __('Main background image') . '</h4>';
 
     echo '<p><label class="classic" for="default-image-1">'.
-    form::radio(array('default-image','default-image-1'), true, $s['default-image']).
+    form::radio(array('default-image','default-image-1'), true, $sr['default-image']).
     __('default image').'</label></p>'.
     '<p><label class="classic" for="default-image-2">'.
-    form::radio(array('default-image','default-image-2'), false, !$s['default-image']).
+    form::radio(array('default-image','default-image-2'), false, !$sr['default-image']).
     __('random image').'</label></p>';
 
     echo '<h3>' . __('Images') . '</h3>';
 
     echo '<h4 class="pretty-title">' . __('Default image') . '</h4>';
 
+    echo '<div class="box theme">';
+
     echo '<p> ' .
-    '<img alt="' . __('Image URL:') . ' " src="'. $default_image_s .'" />' .
+    '<img alt="' . __('Image URL:') . ' '. $default_image_s .'" src="'. $default_image_s .'" />' .
     '</p>';
 
-    echo '<p><label for="user-default-image" class="classic">' . __('Image URL:') . '</label> ' .
-    form::field('user-default-image', 30, 255, html::escapeHTML($s['user-default-image'])) .
-    ' <button type="button" id="user-default-image-selector">' . __('Choose a media') . '</button>' .
+    echo '<p><button type="button" id="default-image-selector">' . __('Change') . '</button>' .
+    '<button type="button" id="default-image-selector-reset">' . __('Reset') . '</button>' .
     '</p>' ;
+
+    echo '<p>'. form::field('default-image-url', 30, 255, $si['default-image-url']) .'</p>';
+
+    echo '</div>';
 
     echo '<h4 class="pretty-title">' . __('Random images') . '</h4>';
 
-    
+    for ($i = 0; $i < 6; $i++) {
+        echo '<div class="box theme">';
+
+        echo '<p><img alt="' . __('Image URL:') . ' " src="'. ${'random-image-' . $i . '-small-url'} .'" /></p>';
+
+        echo '<p><button type="button" id="random-image-'.$i.'-selector">' . __('Change') . '</button>' .
+        '<button type="button" id="random-image-'.$i.'-selector-reset">' . __('Reset') . '</button>' .'</p>' ;
+
+        echo '<p>'. form::field('random-image-'.$i.'-url', 30, 255, $si['random-image-'.$i.'-url']) .'</p>';
+
+        echo '</div>';
+    }
+
+    echo '<h3>' . __('Test') . '</h3>';
+
+
+    echo '<p><label for="default-image" class="classic">' . __('Image URL:') . '</label> ' .
+    form::field('default-image', 30, 255, $default_image_s) .
+    '</p>' ;
 
     echo '<p class="clear"><input type="submit" value="' . __('Save') . '" />' . $core->formNonce() . '</p>';
     echo '</form>';
