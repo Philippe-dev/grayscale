@@ -38,7 +38,9 @@ class tplGrayscaleThemeAdmin
 
     public static function adminPopupMedia($plugin_id)
     {
-
+        if ($plugin_id != 'grayscale') {
+            return;
+        }
         $theme_url = $GLOBALS['core']->blog->settings->system->themes_url."/".$GLOBALS['core']->blog->settings->system->theme;
         return dcPage::jsLoad($theme_url . '/js/popup_media.js');
     }
