@@ -36,12 +36,13 @@ class tplGrayscaleThemeAdmin
         echo '<script src="' . $grayscale_admin_js . '" ></script>';
     }
 
-    public static function adminPopupMedia($plugin_id)
+    public static function adminPopupMedia($editor = '')
     {
-        if ($plugin_id != 'grayscale') {
+        if (empty($editor) || $editor != 'admin.blog.theme') {
             return;
         }
         $theme_url = $GLOBALS['core']->blog->settings->system->themes_url."/".$GLOBALS['core']->blog->settings->system->theme;
+        
         return dcPage::jsLoad($theme_url . '/js/popup_media.js');
     }
 }
