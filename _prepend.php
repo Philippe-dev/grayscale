@@ -1,6 +1,6 @@
 <?php
 /**
- * @brief Éditorial, a theme for Dotclear 2
+ * @brief Grayscale, a theme for Dotclear 2
  *
  * @package Dotclear
  * @subpackage Themes
@@ -9,7 +9,6 @@
  * @copyright GPL-2.0-only
  */
 
-namespace themes\grayscale;
 
 if (!defined('DC_RC_PATH')) {
     return;
@@ -22,26 +21,28 @@ if (!defined('DC_CONTEXT_ADMIN')) {
 // admin part below
 
 # Behaviors
-$GLOBALS['core']->addBehavior('adminPageHTMLHead', [__NAMESPACE__ . '\tplEditorialThemeAdmin', 'adminPageHTMLHead']);
+$GLOBALS['core']->addBehavior('adminPageHTMLHead', ['tplGrayscaleThemeAdmin', 'adminPageHTMLHead']);
+$GLOBALS['core']->addBehavior('adminPopupMedia', ['tplGrayscaleThemeAdmin', 'adminPopupMedia']);
 
-class tplEditorialThemeAdmin
+class tplGrayscaleThemeAdmin
 {
     public static function adminPageHTMLHead()
     {
-        global $core;
-        if ($core->blog->settings->system->theme != 'grayscale') {
+        if ($GLOBALS['core']->blog->settings->system->theme != 'grayscale') {
             return;
         }
+        $grayscale_admin_js = $GLOBALS['core']->blog->settings->system->themes_url."/".$GLOBALS['core']->blog->settings->system->theme."/js/admin.js";
+
+        echo '<script src="' . $grayscale_admin_js . '" ></script>';
+    }
+
+    public static function adminPopupMedia($plugin_id)
+    {
+        if ($GLOBALS['core']->blog->settings->system->theme != 'grayscale') {
+            return;
+        }
+        $theme_url = $GLOBALS['core']->blog->settings->system->themes_url."/".$GLOBALS['core']->blog->settings->system->theme;
+        return dcPage::jsLoad($theme_url . '/js/popup_media.js');
         
-        echo "
-        <script>
-        $(function() {
-            $('#default-image-selector').on('click', function (e) {
-                window.open('media.php?plugin_id=grayscale&popup=true&select=1&link_type=attachment', 'dc_popup', 'alwaysRaised=yes,dependent=yes,toolbar=yes,height=500,width=760,' + 'menubar=no,resizable=yes,scrollbars=yes,status=no');
-                e.preventDefault();
-                return false;
-            });
-        });
-        </script>";;
     }
 }

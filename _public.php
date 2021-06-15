@@ -27,6 +27,8 @@ class grayscalePublic
     public static function publicHeadContent($core)
     {
         # Settings
+        $theme_url = $GLOBALS['core']->blog->settings->system->themes_url."/".$GLOBALS['core']->blog->settings->system->theme;
+
         $sr = $GLOBALS['core']->blog->settings->themes->get($GLOBALS['core']->blog->settings->system->theme . '_random');
         $sr = @unserialize($sr);
 
@@ -37,15 +39,38 @@ class grayscalePublic
         if (!isset($sr['default-image'])) {
             $sr['default-image'] = 1;
         }
-        
-        $grayscale_random_css_url = $GLOBALS['core']->blog->settings->system->themes_url."/".$GLOBALS['core']->blog->settings->system->theme."/css/random.css";
 
-        if ($sr['default-image'] == 1) {
-            return;
-        } else {
-            echo
-            "<link rel='stylesheet' type='text/css' href='". $grayscale_random_css_url ."' media='screen' />";
+        $si = $GLOBALS['core']->blog->settings->themes->get($GLOBALS['core']->blog->settings->system->theme . '_images');
+        $si = @unserialize($si);
+
+        if (!is_array($si)) {
+            $si = [];
         }
+        
+        if (!isset($si['default-image-url'])) {
+            $si['default-image-url'] = $theme_url.'/img/intro-bg.jpg';
+        }
+        
+        for ($i = 0; $i < 6; $i++) {
+            if (!isset($si['random-image-'.$i.'-url'])) {
+                $si['random-image-'.$i.'-url'] = $theme_url.'/img/bg-intro-'. $i .'.jpg';
+            }
+        }
+
+        $rs = '<style>';
+        $rs .= '.intro { background-image: url("'.$si['default-image-url'].'"); }';
+        if ($sr['default-image'] != 1) {
+            for ($i = 0; $i < 6; $i++) {
+                $rs .=  '.intro.round'. $i .' {' .
+                    'background: #555 url('. $si['random-image-'.$i.'-url'] .');' .
+                    'background-size: cover;' .
+                    'background-position: center;' .
+                '}';
+            }
+            $rs .= '.intro { background-image: none; }';
+        }
+        $rs .= '</style>';
+        echo $rs;
     }
     public static function publicFooterContent($core)
     {

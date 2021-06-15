@@ -16,8 +16,9 @@ if (!defined('DC_CONTEXT_ADMIN')) {
 
 l10n::set(dirname(__FILE__) . '/locales/' . $_lang . '/admin');
 
-$standalone_config = (boolean) $core->themes->moduleInfo($core->blog->settings->system->theme, 'standalone_config');
 $theme_url = $GLOBALS['core']->blog->settings->system->themes_url."/".$GLOBALS['core']->blog->settings->system->theme;
+
+$standalone_config = (boolean) $core->themes->moduleInfo($core->blog->settings->system->theme, 'standalone_config');
 
 # default or random image background
 $sr = $GLOBALS['core']->blog->settings->themes->get($GLOBALS['core']->blog->settings->system->theme . '_random');
@@ -34,6 +35,10 @@ if (!isset($sr['default-image'])) {
 # default or user defined images
 $si = $GLOBALS['core']->blog->settings->themes->get($GLOBALS['core']->blog->settings->system->theme . '_images');
 $si = @unserialize($si);
+
+if (!is_array($si)) {
+    $si = [];
+}
 
 if (!isset($si['default-image-url'])) {
     $si['default-image-url'] = $theme_url.'/img/intro-bg.jpg';
@@ -144,13 +149,6 @@ if (!$standalone_config) {
 
         echo '</div>';
     }
-
-    echo '<h3>' . __('Test') . '</h3>';
-
-
-    echo '<p><label for="default-image" class="classic">' . __('Image URL:') . '</label> ' .
-    form::field('default-image', 30, 255, $default_image_s) .
-    '</p>' ;
 
     echo '<p class="clear"><input type="submit" value="' . __('Save') . '" />' . $core->formNonce() . '</p>';
     echo '</form>';
