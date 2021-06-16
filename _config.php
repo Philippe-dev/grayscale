@@ -150,6 +150,7 @@ if (!$standalone_config) {
     }
 
     echo '<p class="clear"><input type="submit" value="' . __('Save') . '" />' . $core->formNonce() . '</p>';
+    echo form::hidden(['theme-url'], $theme_url);
     echo '</form>';
 
 
