@@ -9,7 +9,6 @@
  * @copyright GPL-2.0
  */
 
-
 if (!defined('DC_CONTEXT_ADMIN')) {
     return;
 }
@@ -44,7 +43,7 @@ if (!isset($si['default-image-url'])) {
     $si['default-image-url'] = $theme_url.'/img/intro-bg.jpg';
 }
 $parts = pathinfo($si['default-image-url']);
-$default_image_s = $parts['dirname'].'/.'.$parts['filename'].'_s.'.str_ireplace('jpeg','jpg', $parts['extension']);
+$default_image_s = $parts['dirname'].'/.'.$parts['filename'].'_s.'.str_ireplace('jpeg', 'jpg', $parts['extension']);
 
 
 for ($i = 0; $i < 6; $i++) {
@@ -52,7 +51,7 @@ for ($i = 0; $i < 6; $i++) {
         $si['random-image-'.$i.'-url'] = $theme_url.'/img/bg-intro-'. $i .'.jpg';
     }
     $parts = pathinfo($si['random-image-'.$i.'-url']);
-    ${'random-image-' . $i . '-small-url'} = $parts['dirname'].'/.'.$parts['filename'].'_s.'.str_ireplace('jpeg','jpg', $parts['extension']);
+    ${'random-image-' . $i . '-small-url'} = $parts['dirname'].'/.'.$parts['filename'].'_s.'.str_ireplace('jpeg', 'jpg', $parts['extension']);
 }
 
 // Load contextual help
@@ -72,7 +71,7 @@ if (!empty($_POST)) {
         }
 
         $parts = pathinfo($si['default-image-url']);
-        $default_image_s = $parts['dirname'].'/.'.$parts['filename'].'_s.'.str_ireplace('jpeg','jpg', $parts['extension']);
+        $default_image_s = $parts['dirname'].'/.'.$parts['filename'].'_s.'.str_ireplace('jpeg', 'jpg', $parts['extension']);
 
         for ($i = 0; $i < 6; $i++) {
             if (!empty($_POST['random-image-'.$i.'-url'])) {
@@ -81,7 +80,7 @@ if (!empty($_POST)) {
                 $si['random-image-'.$i.'-url'] = $theme_url.'/img/bg-intro-'. $i .'.jpg';
             }
             $parts = pathinfo($si['random-image-'.$i.'-url']);
-            ${'random-image-' . $i . '-small-url'} = $parts['dirname'].'/.'.$parts['filename'].'_s.'.str_ireplace('jpeg','jpg', $parts['extension']);
+            ${'random-image-' . $i . '-small-url'} = $parts['dirname'].'/.'.$parts['filename'].'_s.'.str_ireplace('jpeg', 'jpg', $parts['extension']);
         }
         $core->blog->settings->addNamespace('themes');
         $core->blog->settings->themes->put($core->blog->settings->system->theme . '_random', serialize($sr));

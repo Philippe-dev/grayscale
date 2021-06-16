@@ -8,7 +8,7 @@
  * @copyright Philippe aka amalgame
  * @copyright GPL-2.0-only
  */
-
+namespace themes\grayscale;
 
 if (!defined('DC_RC_PATH')) {
     return;
@@ -16,13 +16,13 @@ if (!defined('DC_RC_PATH')) {
 // public part below
 
 if (!defined('DC_CONTEXT_ADMIN')) {
-    return false;
+    return;
 }
 // admin part below
 
 # Behaviors
-$GLOBALS['core']->addBehavior('adminPageHTMLHead', ['tplGrayscaleThemeAdmin', 'adminPageHTMLHead']);
-$GLOBALS['core']->addBehavior('adminPopupMedia', ['tplGrayscaleThemeAdmin', 'adminPopupMedia']);
+$GLOBALS['core']->addBehavior('adminPageHTMLHead', [__NAMESPACE__ . '\tplGrayscaleThemeAdmin', 'adminPageHTMLHead']);
+$GLOBALS['core']->addBehavior('adminPopupMedia', [__NAMESPACE__ . '\tplGrayscaleThemeAdmin', 'adminPopupMedia']);
 
 class tplGrayscaleThemeAdmin
 {
