@@ -28,4 +28,10 @@ $(function () {
             $('#custom-image-' + i + '-thumb-url').attr('src',thumb);
         });
     }
+    $('#default-image-url').on('change', function (e) {
+        var url = $('input[name="theme-url"]').val() + '/img/intro-bg.jpg';
+        var thumb = $('input[name="theme-url"]').val() + '/img/.intro-bg_s.jpg';
+        $('#default-image-url').val(url);
+        $('#default-image-thumb-url').attr('src',thumb);
+    });
 });
