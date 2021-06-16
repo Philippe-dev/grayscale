@@ -123,7 +123,7 @@ if (!$standalone_config) {
     echo '<div class="box theme">';
 
     echo '<p> ' .
-    '<img alt="' . __('Image URL:') . ' '. $default_image_s .'" src="'. $default_image_s .'" />' .
+    '<img id="default-image-thumb-url" alt="' . __('Image URL:') . ' '. $default_image_s .'" src="'. $default_image_s .'" />' .
     '</p>';
 
     echo '<p><button type="button" id="default-image-selector">' . __('Change') . '</button>' .
@@ -139,7 +139,7 @@ if (!$standalone_config) {
     for ($i = 0; $i < 6; $i++) {
         echo '<div class="box theme">';
 
-        echo '<p><img alt="' . __('Image URL:') . ' " src="'. ${'random-image-' . $i . '-small-url'} .'" /></p>';
+        echo '<p><img id="custom-image-'.$i.'-thumb-url" alt="' . __('Image URL:') . ' " src="'. ${'random-image-' . $i . '-small-url'} .'" /></p>';
 
         echo '<p><button type="button" id="random-image-'.$i.'-selector">' . __('Change') . '</button>' .
         '<button type="button" id="random-image-'.$i.'-selector-reset">' . __('Reset') . '</button>' .'</p>' ;

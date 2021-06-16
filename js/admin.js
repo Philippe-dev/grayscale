@@ -7,7 +7,9 @@ $(function () {
     });
     $('#default-image-selector-reset').on('click', function (e) {
         var url = $('input[name="theme-url"]').val() + '/img/intro-bg.jpg';
+        var thumb = $('input[name="theme-url"]').val() + '/img/.intro-bg_s.jpg';
         $('#default-image-url').val(url);
+        $('#default-image-thumb-url').attr('src',thumb);
     });
 
     // random images
@@ -20,9 +22,10 @@ $(function () {
     }
     for (let i = 0; i < 6; i++) {
         $('#random-image-' + i + '-selector-reset').on('click', function (e) {
-            $('#random-image-' + i + '-url').val('');
             var url = $('input[name="theme-url"]').val() + '/img/bg-intro-' + i + '.jpg';
+            var thumb = $('input[name="theme-url"]').val() + '/img/.bg-intro-' + i + '_s.jpg';
             $('#random-image-' + i + '-url').val(url);
+            $('#custom-image-' + i + '-thumb-url').attr('src',thumb);
         });
     }
 });
