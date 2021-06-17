@@ -74,16 +74,13 @@ $(function () {
 
     for (let i = 0; i < 6; i++) {
         $('#random-image-' + i + '-url').on('change', function (e) {
-            var url = $('input[name="theme-url"]').val() + '/img/intro-bg.jpg';
-            var thumb = $('input[name="theme-url"]').val() + '/img/.intro-bg_s.jpg';
+            var url = $('input[name="theme-url"]').val() + '/img/bg-intro-' + i + '.jpg';
+            var thumb = $('input[name="theme-url"]').val() + '/img/.bg-intro-' + i + '_s.jpg';
             if ($('#random-image-' + i + '-url').val() == url) {
                 $('#custom-image-' + i + '-thumb-url').attr('src', thumb);
             } else if ($('#random-image-' + i + '-url').val() == '') {
                 return;
             } else {
-                thumb = getFileThumb($('#random-image-' + i + '-url').val());
-                $('#custom-image-' + i + '-thumb-url').attr('src', thumb);
-
                 thumb = getFileThumb($('#random-image-' + i + '-url').val());
                 if (FileExists(thumb)) {
                     $('#custom-image-' + i + '-thumb-url').attr('src', thumb);
