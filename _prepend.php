@@ -44,6 +44,8 @@ class tplGrayscaleThemeAdmin
 
     public static function adminPopupMedia($editor = '')
     {
+        $core = $GLOBALS['core'];
+
         if (empty($editor) || $editor != 'admin.blog.theme') {
             return;
         }
