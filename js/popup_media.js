@@ -6,7 +6,7 @@ $(function () {
     $('#media-select-ok').on('click', function () {
         const main = window.opener;
         const href = $('input[name="url"]').val();
-        let buttonId = main.$('#change-button-id').val();
+        let buttonId = main.$('input[name="change-button-id"]').val();
         
         if (buttonId == 'default-image-selector') {
             main.$('#default-image-url').prop('value', href).trigger('change');
