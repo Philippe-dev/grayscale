@@ -23,7 +23,7 @@ if (preg_match('#^http(s)?://#', $core->blog->settings->system->themes_url)) {
 $standalone_config = (boolean) $core->themes->moduleInfo($core->blog->settings->system->theme, 'standalone_config');
 
 # default or random image background
-$sr = $GLOBALS['core']->blog->settings->themes->get($GLOBALS['core']->blog->settings->system->theme . '_random');
+$sr = $GLOBALS['core']->blog->settings->themes->get($GLOBALS['core']->blog->settings->system->theme . '_behavior');
 $sr = @unserialize($sr);
 
 if (!is_array($sr)) {
@@ -84,7 +84,7 @@ if (!empty($_POST)) {
             ${'random-image-' . $i . '-small-url'} = $parts['dirname'] . '/.' . $parts['filename'] . '_s.' . str_ireplace('jpeg', 'jpg', $parts['extension']);
         }
         $core->blog->settings->addNamespace('themes');
-        $core->blog->settings->themes->put($core->blog->settings->system->theme . '_random', serialize($sr));
+        $core->blog->settings->themes->put($core->blog->settings->system->theme . '_behavior', serialize($sr));
         $core->blog->settings->themes->put($core->blog->settings->system->theme . '_images', serialize($si));
 
         // Blog refresh
@@ -140,7 +140,7 @@ if (!$standalone_config) {
     for ($i = 0; $i < 6; $i++) {
         echo '<div class="box theme">';
 
-        echo '<p><img id="custom-image-' . $i . '-thumb-url" alt="' . __('Image URL:') . ' " src="' . ${'random-image-' . $i . '-small-url'} . '" width="240" height="160"  /></p>';
+        echo '<p><img id="random-image-' . $i . '-thumb-url" alt="' . __('Image URL:') . ' " src="' . ${'random-image-' . $i . '-small-url'} . '" width="240" height="160"  /></p>';
 
         echo '<p><button type="button" id="random-image-' . $i . '-selector">' . __('Change') . '</button>' .
         '<button type="button" id="random-image-' . $i . '-selector-reset">' . __('Reset') . '</button>' . '</p>' ;

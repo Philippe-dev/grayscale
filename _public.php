@@ -34,7 +34,7 @@ class grayscalePublic
             $theme_url = http::concatURL($core->blog->url, $core->blog->settings->system->themes_url . '/' . $core->blog->settings->system->theme);
         }
 
-        $sr = $core->blog->settings->themes->get($core->blog->settings->system->theme . '_random');
+        $sr = $core->blog->settings->themes->get($core->blog->settings->system->theme . '_behavior');
         $sr = @unserialize($sr);
 
         if (!is_array($sr)) {
@@ -82,7 +82,7 @@ class grayscalePublic
         $core = $GLOBALS['core'];
 
         # Settings
-        $sr = $core->blog->settings->themes->get($core->blog->settings->system->theme . '_random');
+        $sr = $core->blog->settings->themes->get($core->blog->settings->system->theme . '_behavior');
         $sr = @unserialize($sr);
 
         if (!is_array($sr)) {

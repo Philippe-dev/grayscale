@@ -68,7 +68,7 @@ $(function () {
             var url = $('input[name="theme-url"]').val() + '/img/bg-intro-' + i + '.jpg';
             var thumb = $('input[name="theme-url"]').val() + '/img/.bg-intro-' + i + '_s.jpg';
             $('#random-image-' + i + '-url').val(url);
-            $('#custom-image-' + i + '-thumb-url').attr('src', thumb);
+            $('#random-image-' + i + '-thumb-url').attr('src', thumb);
         });
     }
 
@@ -77,16 +77,16 @@ $(function () {
             var url = $('input[name="theme-url"]').val() + '/img/bg-intro-' + i + '.jpg';
             var thumb = $('input[name="theme-url"]').val() + '/img/.bg-intro-' + i + '_s.jpg';
             if ($('#random-image-' + i + '-url').val() == url) {
-                $('#custom-image-' + i + '-thumb-url').attr('src', thumb);
+                $('#random-image-' + i + '-thumb-url').attr('src', thumb);
             } else if ($('#random-image-' + i + '-url').val() == '') {
                 return;
             } else {
                 thumb = getFileThumb($('#random-image-' + i + '-url').val());
                 if (FileExists(thumb)) {
-                    $('#custom-image-' + i + '-thumb-url').attr('src', thumb);
+                    $('#random-image-' + i + '-thumb-url').attr('src', thumb);
                 } else {
                     thumb = $('input[name="theme-url"]').val() + '/img/no-thumb.jpg';
-                    $('#custom-image-' + i + '-thumb-url').attr('src', thumb);
+                    $('#random-image-' + i + '-thumb-url').attr('src', thumb);
                 }
             }
         });
