@@ -8,16 +8,15 @@
  * @author Philippe aka amalgame and contributors
  * @copyright GPL-2.0
  */
-
 if (!defined('DC_RC_PATH')) {
     return;
 }
 
-l10n::set(dirname(__FILE__).'/locales/'.$_lang.'/main');
+l10n::set(dirname(__FILE__) . '/locales/' . $_lang . '/main');
 
 # Grayscale random image CSS and js files
-$core->addBehavior('publicHeadContent', array('grayscalePublic','publicHeadContent'));
-$core->addBehavior('publicFooterContent', array('grayscalePublic','publicFooterContent'));
+$core->addBehavior('publicHeadContent', ['grayscalePublic','publicHeadContent']);
+$core->addBehavior('publicFooterContent', ['grayscalePublic','publicFooterContent']);
 
 # Simple menu template functions
 $core->tpl->addValue('GrayscaleSimpleMenu', ['tplGrayscaleSimpleMenu', 'GrayscaleSimpleMenu']);
@@ -26,53 +25,84 @@ class grayscalePublic
 {
     public static function publicHeadContent($core)
     {
+        $core = $GLOBALS['core'];
+
         # Settings
-        $s = $GLOBALS['core']->blog->settings->themes->get($GLOBALS['core']->blog->settings->system->theme . '_random');
-        $s = @unserialize($s);
-
-        if (!is_array($s)) {
-            $s = [];
-        }
-
-        if (!isset($s['default-image'])) {
-            $s['default-image'] = 1;
-        }
-        
-        $grayscale_random_css_url = $GLOBALS['core']->blog->settings->system->themes_url."/".$GLOBALS['core']->blog->settings->system->theme."/css/random.css";
-
-        if ($s['default-image'] == 1) {
-            return;
+        if (preg_match('#^http(s)?://#', $core->blog->settings->system->themes_url)) {
+            $theme_url = http::concatURL($core->blog->settings->system->themes_url, '/' . $core->blog->settings->system->theme);
         } else {
-            echo
-            "<link rel='stylesheet' type='text/css' href='". $grayscale_random_css_url ."' media='screen' />";
+            $theme_url = http::concatURL($core->blog->url, $core->blog->settings->system->themes_url . '/' . $core->blog->settings->system->theme);
         }
+
+        $sb = $core->blog->settings->themes->get($core->blog->settings->system->theme . '_behavior');
+        $sb = @unserialize($sb);
+
+        if (!is_array($sb)) {
+            $sb = [];
+        }
+
+        if (!isset($sb['default-image'])) {
+            $sb['default-image'] = 1;
+        }
+
+        $si = $core->blog->settings->themes->get($core->blog->settings->system->theme . '_images');
+        $si = @unserialize($si);
+
+        if (!is_array($si)) {
+            $si = [];
+        }
+
+        if (!isset($si['default-image-url'])) {
+            $si['default-image-url'] = $theme_url . '/img/intro-bg.jpg';
+        }
+
+        for ($i = 0; $i < 6; $i++) {
+            if (!isset($si['random-image-' . $i . '-url'])) {
+                $si['random-image-' . $i . '-url'] = $theme_url . '/img/bg-intro-' . $i . '.jpg';
+            }
+        }
+
+        $rs = '<style>';
+        $rs .= '.intro { background-image: url("' . $si['default-image-url'] . '"); }';
+        if ($sb['default-image'] != 1) {
+            for ($i = 0; $i < 6; $i++) {
+                $rs .= '.intro.round' . $i . ' {' .
+                    'background: #555 url(' . $si['random-image-' . $i . '-url'] . ');' .
+                    'background-size: cover;' .
+                    'background-position: center;' .
+                '}';
+            }
+            $rs .= '.intro { background-image: none; }';
+        }
+        $rs .= '</style>';
+        echo $rs;
     }
     public static function publicFooterContent($core)
     {
-        
+        $core = $GLOBALS['core'];
+
         # Settings
-        $s = $GLOBALS['core']->blog->settings->themes->get($GLOBALS['core']->blog->settings->system->theme . '_random');
-        $s = @unserialize($s);
+        $sb = $core->blog->settings->themes->get($core->blog->settings->system->theme . '_behavior');
+        $sb = @unserialize($sb);
 
-        if (!is_array($s)) {
-            $s = [];
+        if (!is_array($sb)) {
+            $sb = [];
         }
 
-        if (!isset($s['default-image'])) {
-            $s['default-image'] = 1;
+        if (!isset($sb['default-image'])) {
+            $sb['default-image'] = 1;
         }
 
-        if ($s['default-image'] == 1) {
+        if ($sb['default-image'] == 1) {
             return;
-        } else {
-            echo
-        '<script>'."\n".
+        }
+        echo
+        '<script>' . "\n" .
             "$(document).ready(function() {
             var round = parseInt(Math.random()*6);
                 $('header.intro').addClass('round'+round);
-            });".
+            });" .
         "</script>\n";
-        }
     }
 }
 
@@ -141,11 +171,7 @@ class tplGrayscaleSimpleMenu
 
                 # Active item test
                 $active = false;
-                if (($url == $href) ||
-                    ($abs_url == $href) ||
-                    ($_SERVER['URL_REQUEST_PART'] == $href) ||
-                    (($href_part != '') && ($_SERVER['URL_REQUEST_PART'] == $href_part)) ||
-                    (($_SERVER['URL_REQUEST_PART'] == '') && (($href == $home_url) || ($href == $home_directory)))) {
+                if (($url == $href) || ($abs_url == $href) || ($_SERVER['URL_REQUEST_PART'] == $href) || (($href_part != '') && ($_SERVER['URL_REQUEST_PART'] == $href_part)) || (($_SERVER['URL_REQUEST_PART'] == '') && (($href == $home_url) || ($href == $home_directory)))) {
                     $active = true;
                 }
                 $title = $span = '';
@@ -190,7 +216,7 @@ class tplGrayscaleSimpleMenu
                     ($item['class'] ? ' ' . $item['class'] : '') .
                     '">' .
                     '<a class="nav-link js-scroll-trigger" href="' . $href . '"' .
-                    (!empty($item['title']) ? ' title="'. $label . ' - ' . $item['title'] . '"' : '') .
+                    (!empty($item['title']) ? ' title="' . $label . ' - ' . $item['title'] . '"' : '') .
                     (($targetBlank) ? ' target="_blank" rel="noopener noreferrer"' : '') . '>' .
                     '<span class="simple-menu-label">' . $item['label'] . '</span>' .
                     $item['span'] . '</a>' .

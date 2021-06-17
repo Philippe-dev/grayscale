@@ -7,6 +7,9 @@ msgstr "Catégories"
 msgid "Theme configuration upgraded."
 msgstr "La configuration du thème a été mise à jour."
 
+msgid "Behavior"
+msgstr "Comportement"
+
 msgid "Main background image"
 msgstr "Image de fond"
 
@@ -15,3 +18,15 @@ msgstr "image par défaut"
 
 msgid "random image"
 msgstr "image aléatoire"
+
+msgid "Images"
+msgstr "Images"
+
+msgid "To change any image delivered by this theme, choose in your media manager an original image of at least 1200*800px."
+msgstr "Pour changer une des images fournies avec le thème, choisissez dans votre médiathèque une image originale dont la taille est au moins de 1200*800px."
+
+msgid "Default image"
+msgstr "Image par défaut"
+
+msgid "Random images"
+msgstr "Images aléatoires"
