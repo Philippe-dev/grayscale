@@ -34,15 +34,15 @@ class grayscalePublic
             $theme_url = http::concatURL($core->blog->url, $core->blog->settings->system->themes_url . '/' . $core->blog->settings->system->theme);
         }
 
-        $sr = $core->blog->settings->themes->get($core->blog->settings->system->theme . '_behavior');
-        $sr = @unserialize($sr);
+        $sb = $core->blog->settings->themes->get($core->blog->settings->system->theme . '_behavior');
+        $sb = @unserialize($sb);
 
-        if (!is_array($sr)) {
-            $sr = [];
+        if (!is_array($sb)) {
+            $sb = [];
         }
 
-        if (!isset($sr['default-image'])) {
-            $sr['default-image'] = 1;
+        if (!isset($sb['default-image'])) {
+            $sb['default-image'] = 1;
         }
 
         $si = $core->blog->settings->themes->get($core->blog->settings->system->theme . '_images');
@@ -64,7 +64,7 @@ class grayscalePublic
 
         $rs = '<style>';
         $rs .= '.intro { background-image: url("' . $si['default-image-url'] . '"); }';
-        if ($sr['default-image'] != 1) {
+        if ($sb['default-image'] != 1) {
             for ($i = 0; $i < 6; $i++) {
                 $rs .= '.intro.round' . $i . ' {' .
                     'background: #555 url(' . $si['random-image-' . $i . '-url'] . ');' .
@@ -82,18 +82,18 @@ class grayscalePublic
         $core = $GLOBALS['core'];
 
         # Settings
-        $sr = $core->blog->settings->themes->get($core->blog->settings->system->theme . '_behavior');
-        $sr = @unserialize($sr);
+        $sb = $core->blog->settings->themes->get($core->blog->settings->system->theme . '_behavior');
+        $sb = @unserialize($sb);
 
-        if (!is_array($sr)) {
-            $sr = [];
+        if (!is_array($sb)) {
+            $sb = [];
         }
 
-        if (!isset($sr['default-image'])) {
-            $sr['default-image'] = 1;
+        if (!isset($sb['default-image'])) {
+            $sb['default-image'] = 1;
         }
 
-        if ($sr['default-image'] == 1) {
+        if ($sb['default-image'] == 1) {
             return;
         }
         echo

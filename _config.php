@@ -23,15 +23,15 @@ if (preg_match('#^http(s)?://#', $core->blog->settings->system->themes_url)) {
 $standalone_config = (boolean) $core->themes->moduleInfo($core->blog->settings->system->theme, 'standalone_config');
 
 # default or random image background
-$sr = $GLOBALS['core']->blog->settings->themes->get($GLOBALS['core']->blog->settings->system->theme . '_behavior');
-$sr = @unserialize($sr);
+$sb = $GLOBALS['core']->blog->settings->themes->get($GLOBALS['core']->blog->settings->system->theme . '_behavior');
+$sb = @unserialize($sb);
 
-if (!is_array($sr)) {
-    $sr = [];
+if (!is_array($sb)) {
+    $sb = [];
 }
 
-if (!isset($sr['default-image'])) {
-    $sr['default-image'] = 1;
+if (!isset($sb['default-image'])) {
+    $sb['default-image'] = 1;
 }
 
 # default or user defined images
@@ -63,7 +63,7 @@ if (file_exists(dirname(__FILE__) . '/locales/' . $_lang . '/resources.php')) {
 
 if (!empty($_POST)) {
     try {
-        $sr['default-image'] = $_POST['default-image'];
+        $sb['default-image'] = $_POST['default-image'];
 
         if (!empty($_POST['default-image-url'])) {
             $si['default-image-url'] = $_POST['default-image-url'];
@@ -84,7 +84,7 @@ if (!empty($_POST)) {
             ${'random-image-' . $i . '-small-url'} = $parts['dirname'] . '/.' . $parts['filename'] . '_s.' . str_ireplace('jpeg', 'jpg', $parts['extension']);
         }
         $core->blog->settings->addNamespace('themes');
-        $core->blog->settings->themes->put($core->blog->settings->system->theme . '_behavior', serialize($sr));
+        $core->blog->settings->themes->put($core->blog->settings->system->theme . '_behavior', serialize($sb));
         $core->blog->settings->themes->put($core->blog->settings->system->theme . '_images', serialize($si));
 
         // Blog refresh
@@ -111,10 +111,10 @@ if (!$standalone_config) {
     echo '<h4 class="pretty-title">' . __('Main background image') . '</h4>';
 
     echo '<p><label class="classic" for="default-image-1">' .
-    form::radio(['default-image','default-image-1'], true, $sr['default-image']) .
+    form::radio(['default-image','default-image-1'], true, $sb['default-image']) .
     __('default image') . '</label></p>' .
     '<p><label class="classic" for="default-image-2">' .
-    form::radio(['default-image','default-image-2'], false, !$sr['default-image']) .
+    form::radio(['default-image','default-image-2'], false, !$sb['default-image']) .
     __('random image') . '</label></p>';
 
     echo '<h3>' . __('Images') . '</h3>';
