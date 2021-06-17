@@ -129,8 +129,8 @@ if (!$standalone_config) {
     '<img id="default-image-thumb-url" alt="' . __('Image URL:') . ' ' . $default_image_s . '" src="' . $default_image_s . '" width="240" height="160" />' .
     '</p>';
 
-    echo '<p><button type="button" id="default-image-selector">' . __('Change') . '</button>' .
-    '<button type="button" id="default-image-selector-reset">' . __('Reset') . '</button>' .
+    echo '<p class="grayscale-buttons"><button type="button" id="default-image-selector">' . __('Change') . '</button>' .
+    '<button class="delete" type="button" id="default-image-selector-reset">' . __('Reset') . '</button>' .
     '</p>' ;
 
     echo '<p class="sr-only">' . form::field('default-image-url', 30, 255, $si['default-image-url']) . '</p>';
@@ -144,8 +144,8 @@ if (!$standalone_config) {
 
         echo '<p><img id="random-image-' . $i . '-thumb-url" alt="' . __('Image URL:') . ' " src="' . ${'random-image-' . $i . '-small-url'} . '" width="240" height="160"  /></p>';
 
-        echo '<p><button type="button" id="random-image-' . $i . '-selector">' . __('Change') . '</button>' .
-        '<button type="button" id="random-image-' . $i . '-selector-reset">' . __('Reset') . '</button>' . '</p>' ;
+        echo '<p class="grayscale-buttons"><button type="button" id="random-image-' . $i . '-selector">' . __('Change') . '</button>' .
+        '<button class="delete" type="button" id="random-image-' . $i . '-selector-reset">' . __('Reset') . '</button>' . '</p>' ;
 
         echo '<p class="sr-only">' . form::field('random-image-' . $i . '-url', 30, 255, $si['random-image-' . $i . '-url']) . '</p>';
 

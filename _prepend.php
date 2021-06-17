@@ -39,7 +39,8 @@ class tplGrayscaleThemeAdmin
             $theme_url = \http::concatURL($core->blog->url, $core->blog->settings->system->themes_url . '/' . $core->blog->settings->system->theme);
         }
 
-        echo '<script src="' . $theme_url . '/js/admin.js' . '"></script>';
+        echo '<script src="' . $theme_url . '/js/admin.js' . '"></script>'."\n".
+       '<link rel="stylesheet" media="screen" href="' . $theme_url . '/css/admin.css'. '" />'."\n";
     }
 
     public static function adminPopupMedia($editor = '')
