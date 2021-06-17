@@ -119,6 +119,8 @@ if (!$standalone_config) {
 
     echo '<h3>' . __('Images') . '</h3>';
 
+    echo '<p class="form-note info maximal">' . __('To change any image delivered by this theme, choose in your media manager an original image of at least 1200*800px.') . '</p> ';
+
     echo '<h4 class="pretty-title">' . __('Default image') . '</h4>';
 
     echo '<div class="box theme">';
@@ -131,7 +133,7 @@ if (!$standalone_config) {
     '<button type="button" id="default-image-selector-reset">' . __('Reset') . '</button>' .
     '</p>' ;
 
-    echo '<p>' . form::field('default-image-url', 30, 255, $si['default-image-url']) . '</p>';
+    echo '<p class="sr-only">' . form::field('default-image-url', 30, 255, $si['default-image-url']) . '</p>';
 
     echo '</div>';
 
@@ -145,10 +147,14 @@ if (!$standalone_config) {
         echo '<p><button type="button" id="random-image-' . $i . '-selector">' . __('Change') . '</button>' .
         '<button type="button" id="random-image-' . $i . '-selector-reset">' . __('Reset') . '</button>' . '</p>' ;
 
-        echo '<p>' . form::field('random-image-' . $i . '-url', 30, 255, $si['random-image-' . $i . '-url']) . '</p>';
+        echo '<p class="sr-only">' . form::field('random-image-' . $i . '-url', 30, 255, $si['random-image-' . $i . '-url']) . '</p>';
 
         echo '</div>';
     }
+
+    
+
+    echo '<p class="sr-only">' . form::field('change-button-id', 30, 255, '') . '</p>';
 
     echo '<p class="clear"><input type="submit" value="' . __('Save') . '" />' . $core->formNonce() . '</p>';
     echo form::hidden(['theme-url'], $theme_url);

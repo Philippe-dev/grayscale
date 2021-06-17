@@ -1,4 +1,5 @@
 $(function () {
+    
     function getFileThumb(file) {
 
         const name = file;
@@ -24,6 +25,7 @@ $(function () {
 
     // default image
     $('#default-image-selector').on('click', function (e) {
+        $('#change-button-id').val(this.id);
         window.open('media.php?plugin_id=admin.blog.theme&popup=1&select=1', 'dc_popup', 'alwaysRaised=yes,dependent=yes,toolbar=yes,height=500,width=760,' + 'menubar=no,resizable=yes,scrollbars=yes,status=no');
         e.preventDefault();
         return false;
@@ -57,6 +59,7 @@ $(function () {
     // random images
     for (let i = 0; i < 6; i++) {
         $('#random-image-' + i + '-selector').on('click', function (e) {
+            $('#change-button-id').val(this.id);
             window.open('media.php?plugin_id=admin.blog.theme&popup=1&select=1', 'dc_popup', 'alwaysRaised=yes,dependent=yes,toolbar=yes,height=500,width=760,' + 'menubar=no,resizable=yes,scrollbars=yes,status=no');
             e.preventDefault();
             return false;
