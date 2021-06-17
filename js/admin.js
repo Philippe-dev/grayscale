@@ -7,7 +7,19 @@ $(function () {
         var ext = name.substring(lastDot + 1);
         var fileName = (name.split('\\').pop().split('/').pop().split('.'))[0];
 
-        return name.substr(0, name.lastIndexOf('/')) +'/.' + fileName + '_s.' + ext.replace('jpeg', 'jpg');;
+        return name.substr(0, name.lastIndexOf('/')) + '/.' + fileName + '_s.' + ext.replace('jpeg', 'jpg');;
+    }
+
+    function FileExists(url) {
+        var xhr = new XMLHttpRequest();
+        xhr.open('HEAD', url, false);
+        xhr.send();
+
+        if (xhr.status == "404") {
+            return false;
+        } else {
+            return true;
+        }
     }
 
     // default image
@@ -23,7 +35,7 @@ $(function () {
         $('#default-image-url').val(url);
         $('#default-image-thumb-url').attr('src', thumb);
     });
-    
+
     $('#default-image-url').on('change', function (e) {
         var url = $('input[name="theme-url"]').val() + '/img/intro-bg.jpg';
         var thumb = $('input[name="theme-url"]').val() + '/img/.intro-bg_s.jpg';
@@ -33,7 +45,12 @@ $(function () {
             return;
         } else {
             thumb = getFileThumb($('#default-image-url').val());
-            $('#default-image-thumb-url').attr('src', thumb);
+            if (FileExists(thumb)) {
+                $('#default-image-thumb-url').attr('src', thumb);
+            } else {
+                thumb = $('input[name="theme-url"]').val() + '/img/no-thumb.jpg';
+                $('#default-image-thumb-url').attr('src', thumb);
+            }
         }
     });
 
@@ -66,6 +83,14 @@ $(function () {
             } else {
                 thumb = getFileThumb($('#random-image-' + i + '-url').val());
                 $('#custom-image-' + i + '-thumb-url').attr('src', thumb);
+
+                thumb = getFileThumb($('#random-image-' + i + '-url').val());
+                if (FileExists(thumb)) {
+                    $('#custom-image-' + i + '-thumb-url').attr('src', thumb);
+                } else {
+                    thumb = $('input[name="theme-url"]').val() + '/img/no-thumb.jpg';
+                    $('#custom-image-' + i + '-thumb-url').attr('src', thumb);
+                }
             }
         });
     }
