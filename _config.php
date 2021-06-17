@@ -133,7 +133,7 @@ if (!$standalone_config) {
     '<button class="delete" type="button" id="default-image-selector-reset">' . __('Reset') . '</button>' .
     '</p>' ;
 
-    echo '<p class="with-js hidden-if-js">' . form::field('default-image-url', 30, 255, $si['default-image-url']) . '</p>';
+    echo '<p class="hidden-if-js">' . form::field('default-image-url', 30, 255, $si['default-image-url']) . '</p>';
 
     echo '</div>';
 
@@ -147,7 +147,7 @@ if (!$standalone_config) {
         echo '<p class="grayscale-buttons"><button type="button" id="random-image-' . $i . '-selector">' . __('Change') . '</button>' .
         '<button class="delete" type="button" id="random-image-' . $i . '-selector-reset">' . __('Reset') . '</button>' . '</p>' ;
 
-        echo '<p class="with-js hidden-if-js">' . form::field('random-image-' . $i . '-url', 30, 255, $si['random-image-' . $i . '-url']) . '</p>';
+        echo '<p class="hidden-if-js">' . form::field('random-image-' . $i . '-url', 30, 255, $si['random-image-' . $i . '-url']) . '</p>';
 
         echo '</div>';
     }
