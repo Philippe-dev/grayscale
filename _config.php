@@ -22,7 +22,7 @@ if (preg_match('#^http(s)?://#', $core->blog->settings->system->themes_url)) {
 
 $standalone_config = (boolean) $core->themes->moduleInfo($core->blog->settings->system->theme, 'standalone_config');
 
-# default or random image background settings
+# random or default image behavior
 $sb = $GLOBALS['core']->blog->settings->themes->get($GLOBALS['core']->blog->settings->system->theme . '_behavior');
 $sb = @unserialize($sb);
 
@@ -67,7 +67,7 @@ if (file_exists(dirname(__FILE__) . '/locales/' . $_lang . '/resources.php')) {
 
 if (!empty($_POST)) {
     try {
-        # random image setting
+        # random or default image behavior
         $sb['default-image'] = $_POST['default-image'];
 
         # default image setting
@@ -84,13 +84,16 @@ if (!empty($_POST)) {
             $si['default-image-tb-url'] = $theme_url . '/img/intro-bg.jpg';
         }
 
+        
         for ($i = 0; $i < 6; $i++) {
+            # random images settings
             if (!empty($_POST['random-image-' . $i . '-url'])) {
                 $si['random-image-' . $i . '-url'] = $_POST['random-image-' . $i . '-url'];
             } else {
                 $si['random-image-' . $i . '-url'] = $theme_url . '/img/bg-intro-' . $i . '.jpg';
             }
 
+            # random images thumbnail settings
             if (!empty($_POST['random-image-' . $i . '-tb-url'])) {
                 $si['random-image-' . $i . '-tb-url'] = $_POST['random-image-' . $i . '-tb-url'];
             } else {
