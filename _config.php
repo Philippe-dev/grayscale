@@ -22,7 +22,7 @@ if (preg_match('#^http(s)?://#', $core->blog->settings->system->themes_url)) {
 
 $standalone_config = (boolean) $core->themes->moduleInfo($core->blog->settings->system->theme, 'standalone_config');
 
-# default or random image background
+# default or random image background settings
 $sb = $GLOBALS['core']->blog->settings->themes->get($GLOBALS['core']->blog->settings->system->theme . '_behavior');
 $sb = @unserialize($sb);
 
@@ -34,7 +34,7 @@ if (!isset($sb['default-image'])) {
     $sb['default-image'] = 1;
 }
 
-# default or user defined images
+# default or user defined images settings
 $si = $GLOBALS['core']->blog->settings->themes->get($GLOBALS['core']->blog->settings->system->theme . '_images');
 $si = @unserialize($si);
 
@@ -45,15 +45,19 @@ if (!is_array($si)) {
 if (!isset($si['default-image-url'])) {
     $si['default-image-url'] = $theme_url . '/img/intro-bg.jpg';
 }
-$parts           = pathinfo($si['default-image-url']);
-$default_image_s = $parts['dirname'] . '/.' . $parts['filename'] . '_s.' . str_ireplace('jpeg', 'jpg', $parts['extension']);
+
+if (!isset($si['default-image-tb-url'])) {
+    $si['default-image-tb-url'] = $theme_url . '/img/.intro-bg_s.jpg';
+}
 
 for ($i = 0; $i < 6; $i++) {
     if (!isset($si['random-image-' . $i . '-url'])) {
         $si['random-image-' . $i . '-url'] = $theme_url . '/img/bg-intro-' . $i . '.jpg';
     }
-    $parts                                 = pathinfo($si['random-image-' . $i . '-url']);
-    ${'random-image-' . $i . '-small-url'} = $parts['dirname'] . '/.' . $parts['filename'] . '_s.' . str_ireplace('jpeg', 'jpg', $parts['extension']);
+
+    if (!isset($si['random-image-' . $i . '-tb-url'])) {
+        $si['random-image-' . $i . '-tb-url'] = $theme_url . '/img/.bg-intro-' . $i . '_s.jpg';
+    }
 }
 
 // Load contextual help
@@ -63,16 +67,22 @@ if (file_exists(dirname(__FILE__) . '/locales/' . $_lang . '/resources.php')) {
 
 if (!empty($_POST)) {
     try {
+        # random image setting
         $sb['default-image'] = $_POST['default-image'];
 
+        # default image setting
         if (!empty($_POST['default-image-url'])) {
             $si['default-image-url'] = $_POST['default-image-url'];
         } else {
             $si['default-image-url'] = $theme_url . '/img/intro-bg.jpg';
         }
 
-        $parts           = pathinfo($si['default-image-url']);
-        $default_image_s = $parts['dirname'] . '/.' . $parts['filename'] . '_s.' . str_ireplace('jpeg', 'jpg', $parts['extension']);
+        # default image thumbnail settings
+        if (!empty($_POST['default-image-tb-url'])) {
+            $si['default-image-tb-url'] = $_POST['default-image-tb-url'];
+        } else {
+            $si['default-image-tb-url'] = $theme_url . '/img/intro-bg.jpg';
+        }
 
         for ($i = 0; $i < 6; $i++) {
             if (!empty($_POST['random-image-' . $i . '-url'])) {
@@ -80,9 +90,14 @@ if (!empty($_POST)) {
             } else {
                 $si['random-image-' . $i . '-url'] = $theme_url . '/img/bg-intro-' . $i . '.jpg';
             }
-            $parts                                 = pathinfo($si['random-image-' . $i . '-url']);
-            ${'random-image-' . $i . '-small-url'} = $parts['dirname'] . '/.' . $parts['filename'] . '_s.' . str_ireplace('jpeg', 'jpg', $parts['extension']);
+
+            if (!empty($_POST['random-image-' . $i . '-tb-url'])) {
+                $si['random-image-' . $i . '-tb-url'] = $_POST['random-image-' . $i . '-tb-url'];
+            } else {
+                $si['random-image-' . $i . '-tb-url'] = $theme_url . '/img/.bg-intro-' . $i . '_s.jpg';
+            }
         }
+
         $core->blog->settings->addNamespace('themes');
         $core->blog->settings->themes->put($core->blog->settings->system->theme . '_behavior', serialize($sb));
         $core->blog->settings->themes->put($core->blog->settings->system->theme . '_images', serialize($si));
@@ -126,14 +141,16 @@ if (!$standalone_config) {
     echo '<div class="box theme">';
 
     echo '<p> ' .
-    '<img id="default-image-thumb-url" alt="' . __('Image URL:') . ' ' . $default_image_s . '" src="' . $default_image_s . '" width="240" height="160" />' .
+    '<img id="default-image-thumb-src" alt="' . __('Thumbnail') . '" src="' . $si['default-image-tb-url'] . '" width="240" height="160" />' .
     '</p>';
 
     echo '<p class="grayscale-buttons"><button type="button" id="default-image-selector">' . __('Change') . '</button>' .
     '<button class="delete" type="button" id="default-image-selector-reset">' . __('Reset') . '</button>' .
     '</p>' ;
 
-    echo '<p class="hidden-if-js">' . form::field('default-image-url', 30, 255, $si['default-image-url']) . '</p>';
+    echo '<p class="sr-only">' . form::field('default-image-url', 30, 255, $si['default-image-url']) . '</p>';
+    echo '<p class="sr-only">' . form::field('default-image-tb-url', 30, 255, $si['default-image-tb-url']) . '</p>';
+    
 
     echo '</div>';
 
@@ -142,19 +159,22 @@ if (!$standalone_config) {
     for ($i = 0; $i < 6; $i++) {
         echo '<div class="box theme">';
 
-        echo '<p><img id="random-image-' . $i . '-thumb-url" alt="' . __('Image URL:') . ' " src="' . ${'random-image-' . $i . '-small-url'} . '" width="240" height="160"  /></p>';
+        echo '<p> ' .
+        '<img id="random-image-' . $i . '-thumb-src" alt="' . __('Thumbnail') . '" src="' . $si['random-image-' . $i . '-tb-url'] . '" width="240" height="160" />' .
+        '</p>';
 
         echo '<p class="grayscale-buttons"><button type="button" id="random-image-' . $i . '-selector">' . __('Change') . '</button>' .
         '<button class="delete" type="button" id="random-image-' . $i . '-selector-reset">' . __('Reset') . '</button>' . '</p>' ;
 
-        echo '<p class="hidden-if-js">' . form::field('random-image-' . $i . '-url', 30, 255, $si['random-image-' . $i . '-url']) . '</p>';
+        echo '<p class="sr-only">' . form::field('random-image-' . $i . '-url', 30, 255, $si['random-image-' . $i . '-url']) . '</p>';
+        echo '<p class="sr-only">' . form::field('random-image-' . $i . '-tb-url', 30, 255, $si['random-image-' . $i . '-tb-url']) . '</p>';
 
         echo '</div>';
     }
 
     echo '<p class="clear"><input type="submit" value="' . __('Save') . '" />' . $core->formNonce() . '</p>';
     echo form::hidden(['theme-url'], $theme_url);
-    echo form::hidden(['change-button-id'],'');
+    echo form::hidden(['change-button-id'], '');
     echo '</form>';
 
 dcPage::helpBlock('grayscale');

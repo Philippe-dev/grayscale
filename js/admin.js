@@ -1,28 +1,4 @@
 $(function () {
-    
-    function getFileThumb(file) {
-
-        const name = file;
-        const lastDot = name.lastIndexOf('.');
-
-        var ext = name.substring(lastDot + 1);
-        var fileName = (name.split('\\').pop().split('/').pop().split('.'))[0];
-
-        return name.substr(0, name.lastIndexOf('/')) + '/.' + fileName + '_s.' + ext.replace('jpeg', 'jpg');;
-    }
-
-    function FileExists(url) {
-        var xhr = new XMLHttpRequest();
-        xhr.open('HEAD', url, false);
-        xhr.send();
-
-        if (xhr.status == "404") {
-            return false;
-        } else {
-            return true;
-        }
-    }
-
     // default image
     $('#default-image-selector').on('click', function (e) {
         $('input[name="change-button-id"]').val(this.id);
@@ -35,24 +11,18 @@ $(function () {
         var url = $('input[name="theme-url"]').val() + '/img/intro-bg.jpg';
         var thumb = $('input[name="theme-url"]').val() + '/img/.intro-bg_s.jpg';
         $('#default-image-url').val(url);
-        $('#default-image-thumb-url').attr('src', thumb);
+        $('#default-image-tb-url').val(thumb);
+        $('#default-image-thumb-src').attr('src', thumb);
     });
 
     $('#default-image-url').on('change', function (e) {
         var url = $('input[name="theme-url"]').val() + '/img/intro-bg.jpg';
         var thumb = $('input[name="theme-url"]').val() + '/img/.intro-bg_s.jpg';
         if ($('#default-image-url').val() == url) {
-            $('#default-image-thumb-url').attr('src', thumb);
-        } else if ($('#default-image-url').val() == '') {
-            return;
+            $('#default-image-thumb-src').attr('src', thumb);
         } else {
-            thumb = getFileThumb($('#default-image-url').val());
-            if (FileExists(thumb)) {
-                $('#default-image-thumb-url').attr('src', thumb);
-            } else {
-                thumb = $('input[name="theme-url"]').val() + '/img/no-thumb.jpg';
-                $('#default-image-thumb-url').attr('src', thumb);
-            }
+            thumb = $('#default-image-tb-url').val();
+            $('#default-image-thumb-src').attr('src', thumb);
         }
     });
 
@@ -71,7 +41,8 @@ $(function () {
             var url = $('input[name="theme-url"]').val() + '/img/bg-intro-' + i + '.jpg';
             var thumb = $('input[name="theme-url"]').val() + '/img/.bg-intro-' + i + '_s.jpg';
             $('#random-image-' + i + '-url').val(url);
-            $('#random-image-' + i + '-thumb-url').attr('src', thumb);
+            $('#random-image-' + i + '-tb-url').val(thumb);
+            $('#random-image-' + i + '-thumb-src').attr('src', thumb);
         });
     }
 
@@ -80,17 +51,10 @@ $(function () {
             var url = $('input[name="theme-url"]').val() + '/img/bg-intro-' + i + '.jpg';
             var thumb = $('input[name="theme-url"]').val() + '/img/.bg-intro-' + i + '_s.jpg';
             if ($('#random-image-' + i + '-url').val() == url) {
-                $('#random-image-' + i + '-thumb-url').attr('src', thumb);
-            } else if ($('#random-image-' + i + '-url').val() == '') {
-                return;
+                $('#random-image-' + i + '-thumb-src').attr('src', thumb);
             } else {
-                thumb = getFileThumb($('#random-image-' + i + '-url').val());
-                if (FileExists(thumb)) {
-                    $('#random-image-' + i + '-thumb-url').attr('src', thumb);
-                } else {
-                    thumb = $('input[name="theme-url"]').val() + '/img/no-thumb.jpg';
-                    $('#random-image-' + i + '-thumb-url').attr('src', thumb);
-                }
+                thumb = $('#random-image-' + i + '-tb-url').val();
+                $('#random-image-' + i + '-thumb-src').attr('src', thumb);
             }
         });
     }
