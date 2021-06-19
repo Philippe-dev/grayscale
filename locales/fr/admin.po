@@ -22,8 +22,8 @@ msgstr "image aléatoire"
 msgid "Images"
 msgstr "Images"
 
-msgid "To change any image delivered by this theme, choose in your media manager an original image of at least 1200*800px."
-msgstr "Pour changer une des images fournies avec le thème, choisissez dans votre médiathèque une image originale dont la taille est au moins de 1200*800px."
+msgid "Image dimensions should be at least 1200*800px. Only the <em>original</em> size can be chosen."
+msgstr "Les dimansions de l'image doivent être au moins de 1200*800px. Seule la taille <em>originale</em> peut être choisie."
 
 msgid "Default image"
 msgstr "Image par défaut"

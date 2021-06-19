@@ -119,7 +119,7 @@ if (!$standalone_config) {
 
     echo '<h3>' . __('Images') . '</h3>';
 
-    echo '<p class="form-note info maximal">' . __('To change any image delivered by this theme, choose in your media manager an original image of at least 1200*800px.') . '</p> ';
+    echo '<p class="form-note info maximal">' . __('Image dimensions should be at least 1200*800px. Only the <em>original</em> size can be chosen.') . '</p> ';
 
     echo '<h4 class="pretty-title">' . __('Default image') . '</h4>';
 
