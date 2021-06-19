@@ -56,9 +56,16 @@ class grayscalePublic
             $si['default-image-url'] = $theme_url . '/img/intro-bg.jpg';
         }
 
+        if (!isset($si['default-image-tb-url'])) {
+            $si['default-image-tb-url'] = $theme_url . '/img/.intro-bg_s.jpg';
+        }
+
         for ($i = 0; $i < 6; $i++) {
             if (!isset($si['random-image-' . $i . '-url'])) {
                 $si['random-image-' . $i . '-url'] = $theme_url . '/img/bg-intro-' . $i . '.jpg';
+            }
+            if (!isset($si['random-image-' . $i . '-tb-url'])) {
+                $si['random-image-' . $i . '-tb-url'] = $theme_url . '/img/.bg-intro-' . $i . '_s.jpg';
             }
         }
 
