@@ -81,7 +81,7 @@ if (!empty($_POST)) {
         if (!empty($_POST['default-image-tb-url'])) {
             $si['default-image-tb-url'] = $_POST['default-image-tb-url'];
         } else {
-            $si['default-image-tb-url'] = $theme_url . '/img/intro-bg.jpg';
+            $si['default-image-tb-url'] = $theme_url . '/.intro-bg_s.jpg';
         }
 
         
