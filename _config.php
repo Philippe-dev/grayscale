@@ -137,7 +137,7 @@ if (!$standalone_config) {
 
     echo '<h3>' . __('Images') . '</h3>';
 
-    echo '<p class="form-note info maximal">' . __('Image dimensions should be at least 1200*800px. Only the <em>original</em> size can be chosen.') . '</p> ';
+    echo '<p class="form-note info maximal">' . __('Image dimensions should be at least 1200*800px. Only the <em>original</em> size can be selected.') . '</p> ';
 
     echo '<h4 class="pretty-title">' . __('Default image') . '</h4>';
 
