@@ -122,19 +122,14 @@ class grayscalePublic
         $res     = '';
 
         $s = $core->blog->settings->themes->get($core->blog->settings->system->theme . '_stickers');
-
-        if ($s === null) {
-            $default = true;
-        } else {
-            $s = @unserialize($s);
+        $s = @unserialize($s);
             
-            $s = array_filter($s, 'self::cleanSocialLinks');
+        $s = array_filter($s, 'self::cleanSocialLinks');
                 
-            $count = 0;
-            foreach ($s as $sticker) {
-                $res .= self::setSocialLink($count, ($count == count($s)), $sticker['label'], $sticker['url'], $sticker['image']);
-                $count++;
-            }
+        $count = 0;
+        foreach ($s as $sticker) {
+            $res .= self::setSocialLink($count, ($count == count($s)), $sticker['label'], $sticker['url'], $sticker['image']);
+            $count++;
         }
 
         if ($res != '') {
