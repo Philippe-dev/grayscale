@@ -18,6 +18,9 @@ l10n::set(dirname(__FILE__) . '/locales/' . $_lang . '/main');
 $core->addBehavior('publicHeadContent', ['grayscalePublic','publicHeadContent']);
 $core->addBehavior('publicFooterContent', ['grayscalePublic','publicFooterContent']);
 
+# stickers
+$core->tpl->addValue('grayscaleSocialLinks', ['grayscalePublic', 'grayscaleSocialLinks']);
+
 # Simple menu template functions
 $core->tpl->addValue('GrayscaleSimpleMenu', ['tplGrayscaleSimpleMenu', 'GrayscaleSimpleMenu']);
 
@@ -110,6 +113,54 @@ class grayscalePublic
                 $('header.intro').addClass('round'+round);
             });" .
         "</script>\n";
+    }
+
+    public static function grayscaleSocialLinks($attr)
+    {
+        global $core;
+        # Social media links
+        $res     = '';
+
+        $s = $core->blog->settings->themes->get($core->blog->settings->system->theme . '_stickers');
+
+        if ($s === null) {
+            $default = true;
+        } else {
+            $s = @unserialize($s);
+            
+            $s = array_filter($s, 'self::cleanSocialLinks');
+                
+            $count = 0;
+            foreach ($s as $sticker) {
+                $res .= self::setSocialLink($count, ($count == count($s)), $sticker['label'], $sticker['url'], $sticker['image']);
+                $count++;
+            }
+        }
+
+        if ($res != '') {
+            return $res;
+        }
+    }
+    protected static function setSocialLink($position, $last, $label, $url, $image)
+    {
+        return '<li id="slink' . $position . '"' . ($last ? ' class="last"' : '') . '>' . "\n" .
+            '<a class="btn btn-default btn-lg" title="' . $label . '" href="' . $url . '">' .
+            ' <i class="' . $image . '"></i>' . $label .
+            
+            '</a>' . "\n" .
+            '</li>' . "\n";
+    }
+
+    protected static function cleanSocialLinks($s)
+    {
+        if (is_array($s)) {
+            if (isset($s['label']) && isset($s['url']) && isset($s['image'])) {
+                if ($s['label'] != null && $s['url'] != null && $s['image'] != null) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 }
 
