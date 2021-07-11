@@ -187,6 +187,9 @@ echo '<div class="multi-part" id="themes-list' . ($conf_tab == 'presentation' ? 
 echo '<form id="theme_config" action="' . $core->adminurl->get('admin.blog.theme', ['conf' => '1']) .
     '" method="post" enctype="multipart/form-data">';
 
+echo '<div class="fieldset">';
+
+
 echo '<h3>' . __('Background image') . '</h3>';
 
 echo '<p><label class="classic" for="default-image-1">' .
@@ -195,6 +198,10 @@ __('default image') . '</label></p>' .
 '<p><label class="classic" for="default-image-2">' .
 form::radio(['default-image','default-image-2'], false, !$sb['default-image']) .
 __('random image') . '</label></p>';
+
+echo '</div>';
+
+echo '<div class="fieldset">';
 
 echo '<h3>' . __('Images choice') . '</h3>';
 
@@ -233,6 +240,8 @@ for ($i = 0; $i < 6; $i++) {
 
     echo '</div>';
 }
+
+echo '</div>';
 echo '<p><input type="hidden" name="conf_tab" value="presentation" /></p>';
 echo '<p class="clear"><input type="submit" value="' . __('Save') . '" />' . $core->formNonce() . '</p>';
 echo form::hidden(['theme-url'], $theme_url);
