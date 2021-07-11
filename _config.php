@@ -272,7 +272,6 @@ echo
 $count = 0;
 foreach ($stickers as $i => $v) {
     $count++;
-    $v['service'] = str_replace('-link.png', '', $v['image']);
     echo
     '<tr class="line" id="l_' . $i . '">' .
     '<td class="handle">' . form::number(['order[' . $i . ']'], [
