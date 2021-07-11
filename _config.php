@@ -253,6 +253,8 @@ echo '<div class="multi-part" id="themes-list' . ($conf_tab == 'links' ? '' : '-
 echo '<form id="theme_config" action="' . $core->adminurl->get('admin.blog.theme', ['conf' => '1']) .
     '" method="post" enctype="multipart/form-data">';
 
+echo '<div class="fieldset">';
+
 echo '<h4 class="pretty-title">' . __('Social links') . '</h4>';
 
 echo
@@ -288,7 +290,7 @@ foreach ($stickers as $i => $v) {
 echo
     '</tbody>' .
     '</table></div>';
-
+    echo '</div>';
     echo '<p><input type="hidden" name="conf_tab" value="links" /></p>';
     echo '<p class="clear">' . form::hidden('ds_order', '') . '<input type="submit" value="' . __('Save') . '" />' . $core->formNonce() . '</p>';
     echo '</form>';
