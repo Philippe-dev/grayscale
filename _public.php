@@ -140,8 +140,7 @@ class grayscalePublic
     {
         return '<li id="slink' . $position . '"' . ($last ? ' class="last"' : '') . '>' . "\n" .
             '<a class="btn btn-default btn-lg" title="' . $label . '" href="' . $url . '">' .
-            ' <i class="' . $image . '"></i>' . $label .
-            
+            ' <i class="' . $image . '"></i>' . $label .       
             '</a>' . "\n" .
             '</li>' . "\n";
     }
