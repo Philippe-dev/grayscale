@@ -872,11 +872,11 @@ ul.banner-social-buttons {
 
 ul.banner-social-buttons li {
   display: inline;
-  margin: 0 .2em
 }
 
 ul.banner-social-buttons li a {
-  padding: 1em
+  padding: 1em;
+  margin: .2em
 }
 
 ul.banner-social-buttons li .svg-inline--fa {
