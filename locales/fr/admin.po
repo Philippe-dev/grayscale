@@ -7,14 +7,14 @@ msgstr "Présentation"
 msgid "Background image"
 msgstr "Image de fond"
 
-msgid "Stickers"
-msgstr "Étiquettes"
-
 msgid "Main background image"
 msgstr "Image de fond"
 
 msgid "default image"
 msgstr "image par défaut"
+
+msgid "Use featured media for posts"
+msgstr "Utiliser l'image à la une pour les billets"
 
 msgid "random image"
 msgstr "image aléatoire"
@@ -27,6 +27,9 @@ msgstr "Image par défaut"
 
 msgid "Random images"
 msgstr "Images aléatoires"
+
+msgid "Stickers"
+msgstr "Étiquettes"
 
 msgid "Social links"
 msgstr "Liens vers les médias sociaux"

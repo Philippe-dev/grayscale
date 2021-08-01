@@ -29,6 +29,7 @@ class grayscalePublic
     public static function publicHeadContent($core)
     {
         $core = $GLOBALS['core'];
+        $_ctx = $GLOBALS['_ctx'];
 
         # Settings
         if (preg_match('#^http(s)?://#', $core->blog->settings->system->themes_url)) {
@@ -46,6 +47,10 @@ class grayscalePublic
 
         if (!isset($sb['default-image'])) {
             $sb['default-image'] = 1;
+        }
+
+        if (!isset($sb['use-featuredMedia'])) {
+            $sb['use-featuredMedia'] = 0;
         }
 
         $si = $core->blog->settings->themes->get($core->blog->settings->system->theme . '_images');
@@ -73,16 +78,27 @@ class grayscalePublic
         }
 
         $rs = '<style>';
-        $rs .= '.intro { background-image: url("' . $si['default-image-url'] . '"); }';
-        if ($sb['default-image'] != 1) {
-            for ($i = 0; $i < 6; $i++) {
-                $rs .= '.intro.round' . $i . ' {' .
+        if ($_ctx->posts !== null && $core->plugins->moduleExists('featuredMedia') && $sb['use-featuredMedia'] == 1) {
+            $_ctx->featured = new ArrayObject($core->media->getPostMedia($_ctx->posts->post_id, null, "featured"));
+            foreach ($_ctx->featured as $featured_i => $featured_f) {
+                $GLOBALS['featured_i'] = $featured_i;
+                $GLOBALS['featured_f'] = $featured_f;
+            }
+            $url = $featured_f->file_url;
+            $rs .= '.intro { background-image: url("' . $url . '"); }';
+        } else {
+            if ($sb['default-image']) {
+                $rs .= '.intro { background-image: url("' . $si['default-image-url'] . '"); }';
+            } elseif (!$sb['default-image']) {
+                for ($i = 0; $i < 6; $i++) {
+                    $rs .= '.intro.round' . $i . ' {' .
                     'background: #555 url(' . $si['random-image-' . $i . '-url'] . ');' .
                     'background-size: cover;' .
                     'background-position: center;' .
                 '}';
+                }
+                $rs .= '.intro { background-image: none; }';
             }
-            $rs .= '.intro { background-image: none; }';
         }
         $rs .= '</style>';
         echo $rs;
@@ -140,7 +156,7 @@ class grayscalePublic
     {
         return '<li id="slink' . $position . '"' . ($last ? ' class="last"' : '') . '>' . "\n" .
             '<a class="btn btn-default btn-lg" title="' . $label . '" href="' . $url . '">' .
-            ' <i class="' . $image . '"></i>' . $label .       
+            ' <i class="' . $image . '"></i>' . $label .
             '</a>' . "\n" .
             '</li>' . "\n";
     }

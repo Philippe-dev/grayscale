@@ -60,6 +60,10 @@ for ($i = 0; $i < 6; $i++) {
     }
 }
 
+if (!isset($sb['use-featuredMedia'])) {
+    $sb['use-featuredMedia'] = 0;
+}
+
 $stickers = $core->blog->settings->themes->get($core->blog->settings->system->theme . '_stickers');
 $stickers = @unserialize($stickers);
 
@@ -98,6 +102,9 @@ if (!empty($_POST)) {
         if ($conf_tab == 'presentation') {
             # random or default image behavior
             $sb['default-image'] = $_POST['default-image'];
+
+            # use featured media for posts background images
+            $sb['use-featuredMedia'] = (integer) !empty($_POST['use-featuredMedia']);
 
             # default image setting
             if (!empty($_POST['default-image-url'])) {
@@ -198,6 +205,12 @@ __('default image') . '</label></p>' .
 '<p><label class="classic" for="default-image-2">' .
 form::radio(['default-image','default-image-2'], false, !$sb['default-image']) .
 __('random image') . '</label></p>';
+
+if ($core->plugins->moduleExists('featuredMedia')) {
+    echo '<p><label class="classic" for="use-featuredMedia">'.
+        form::checkbox('use-featuredMedia', '1', $sb['use-featuredMedia']).
+        __('Use featured media for posts').'</label></p>';
+}
 
 echo '</div>';
 
