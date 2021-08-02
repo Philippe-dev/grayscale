@@ -207,7 +207,7 @@ form::radio(['default-image','default-image-2'], false, !$sb['default-image']) .
 __('random image') . '</label></p>';
 
 if ($core->plugins->moduleExists('featuredMedia')) {
-    echo '<p><label class="classic" for="use-featuredMedia">'.
+    echo '<p class="vertical-separator"><label class="classic" for="use-featuredMedia">'.
         form::checkbox('use-featuredMedia', '1', $sb['use-featuredMedia']).
         __('Use featured media for posts').'</label></p>';
 }

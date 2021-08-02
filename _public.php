@@ -77,19 +77,25 @@ class grayscalePublic
             }
         }
 
-        $rs = '<style>';
-        if ($_ctx->posts !== null && $core->plugins->moduleExists('featuredMedia') && $sb['use-featuredMedia'] == 1) {
+        # check if post has featured media
+        if ($_ctx->posts !== null && $core->plugins->moduleExists('featuredMedia') && $sb['use-featuredMedia']) {
             $_ctx->featured = new ArrayObject($core->media->getPostMedia($_ctx->posts->post_id, null, "featured"));
             foreach ($_ctx->featured as $featured_i => $featured_f) {
                 $GLOBALS['featured_i'] = $featured_i;
                 $GLOBALS['featured_f'] = $featured_f;
             }
-            $url = $featured_f->file_url;
-            $rs .= '.intro { background-image: url("' . $url . '"); }';
+            if (isset($featured_f->file_url)) {
+                $featuredImageUrl = $featured_f->file_url;
+            }
+        }
+
+        $rs = '<style>';
+        if (!empty($featuredImageUrl)) {
+            $rs .= '.intro { background-image: url("' . $featuredImageUrl . '"); }';
         } else {
             if ($sb['default-image']) {
                 $rs .= '.intro { background-image: url("' . $si['default-image-url'] . '"); }';
-            } elseif (!$sb['default-image']) {
+            } else {
                 for ($i = 0; $i < 6; $i++) {
                     $rs .= '.intro.round' . $i . ' {' .
                     'background: #555 url(' . $si['random-image-' . $i . '-url'] . ');' .
