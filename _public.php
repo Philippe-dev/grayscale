@@ -78,7 +78,7 @@ class grayscalePublic
         }
 
         # check if post has featured media
-        if ($_ctx->posts !== null && $core->plugins->moduleExists('featuredMedia') && $sb['use-featuredMedia']) {
+        if ($_ctx->posts !== null && $core->plugins->moduleExists('featuredMedia')) {
             $_ctx->featured = new ArrayObject($core->media->getPostMedia($_ctx->posts->post_id, null, "featured"));
             foreach ($_ctx->featured as $featured_i => $featured_f) {
                 $GLOBALS['featured_i'] = $featured_i;
@@ -90,7 +90,7 @@ class grayscalePublic
         }
 
         $rs = '<style>';
-        if (!empty($featuredImageUrl)) {
+        if ($sb['use-featuredMedia'] && !empty($featuredImageUrl)) {
             $rs .= '.intro { background-image: url("' . $featuredImageUrl . '"); }';
         } else {
             if ($sb['default-image']) {
