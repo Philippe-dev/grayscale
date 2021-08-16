@@ -34,9 +34,7 @@ $(function () {
             e.preventDefault();
             return false;
         });
-    }
 
-    for (let i = 0; i < 6; i++) {
         $('#random-image-' + i + '-selector-reset').on('click', function (e) {
             var url = $('input[name="theme-url"]').val() + '/img/bg-intro-' + i + '.jpg';
             var thumb = $('input[name="theme-url"]').val() + '/img/.bg-intro-' + i + '_s.jpg';
@@ -44,9 +42,7 @@ $(function () {
             $('#random-image-' + i + '-tb-url').val(thumb);
             $('#random-image-' + i + '-thumb-src').attr('src', thumb);
         });
-    }
 
-    for (let i = 0; i < 6; i++) {
         $('#random-image-' + i + '-url').on('change', function (e) {
             var url = $('input[name="theme-url"]').val() + '/img/bg-intro-' + i + '.jpg';
             var thumb = $('input[name="theme-url"]').val() + '/img/.bg-intro-' + i + '_s.jpg';
@@ -60,16 +56,22 @@ $(function () {
     }
 
     // stickers reorder
-    $('#stickerslist').sortable({'cursor':'move'});
-    $('#stickerslist tr').hover(function () {
-        $(this).css({'cursor':'move'});
-    }, function () {
-        $(this).css({'cursor':'auto'});
+    $('#stickerslist').sortable({
+        'cursor': 'move'
     });
-    $('#theme_config').submit(function() {
-        var order=[];
-        $('#stickerslist tr td input.position').each(function() {
-            order.push(this.name.replace(/^order\[([^\]]+)\]$/,'$1'));
+    $('#stickerslist tr').hover(function () {
+        $(this).css({
+            'cursor': 'move'
+        });
+    }, function () {
+        $(this).css({
+            'cursor': 'auto'
+        });
+    });
+    $('#theme_config').submit(function () {
+        var order = [];
+        $('#stickerslist tr td input.position').each(function () {
+            order.push(this.name.replace(/^order\[([^\]]+)\]$/, '$1'));
         });
         $('input[name=ds_order]')[0].value = order.join(',');
         return true;
