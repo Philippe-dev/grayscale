@@ -8,7 +8,10 @@
  * @author Philippe aka amalgame and contributors
  * @copyright GPL-2.0
  */
-if (!defined('DC_RC_PATH')) {
+
+namespace themes\grayscale;
+
+ if (!defined('DC_RC_PATH')) {
     return;
 }
 
