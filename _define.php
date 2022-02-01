@@ -15,9 +15,9 @@ if (!defined('DC_RC_PATH')) {
 
 $this->registerModule(
     "Grayscale",                           				// Name
-    "Grayscale Bootstrap 5 theme for Dotclear",  			// Description
-    "Philippe aka amalgame and contributors",        // Author
-    '2.5',                                       		// Version
+    "Grayscale Bootstrap 5 theme for Dotclear",  		// Description
+    "Philippe aka amalgame and contributors",           // Author
+    '2.5.1',                                       		// Version
     [                                          			// Properties
         'requires'          => [['core', '2.19']], 		// Dependencies
         'standalone_config' => true,

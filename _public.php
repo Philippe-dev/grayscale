@@ -11,8 +11,8 @@
 namespace themes\grayscale;
 
  if (!defined('DC_RC_PATH')) {
-    return;
-}
+     return;
+ }
 
 \l10n::set(dirname(__FILE__) . '/locales/' . $_lang . '/main');
 
