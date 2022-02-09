@@ -8,6 +8,7 @@
  * @author Philippe aka amalgame and contributors
  * @copyright GPL-2.0
  */
+
 namespace themes\grayscale;
 
  if (!defined('DC_RC_PATH')) {
@@ -41,7 +42,7 @@ class grayscalePublic
         }
 
         $sb = $core->blog->settings->themes->get($core->blog->settings->system->theme . '_behavior');
-        $sb = @unserialize($sb);
+        $sb = $sb ? (unserialize($sb) ?: []) : [];
 
         if (!is_array($sb)) {
             $sb = [];
@@ -56,7 +57,7 @@ class grayscalePublic
         }
 
         $si = $core->blog->settings->themes->get($core->blog->settings->system->theme . '_images');
-        $si = @unserialize($si);
+        $si = $si ? (unserialize($si) ?: []) : [];
 
         if (!is_array($si)) {
             $si = [];
@@ -81,7 +82,7 @@ class grayscalePublic
 
         # check if post has featured media
         if ($_ctx->posts !== null && $core->plugins->moduleExists('featuredMedia')) {
-            $_ctx->featured = new \ArrayObject($core->media->getPostMedia($_ctx->posts->post_id, null, "featured"));
+            $_ctx->featured = new \ArrayObject($core->media->getPostMedia($_ctx->posts->post_id, null, 'featured'));
             foreach ($_ctx->featured as $featured_i => $featured_f) {
                 $GLOBALS['featured_i'] = $featured_i;
                 $GLOBALS['featured_f'] = $featured_f;
@@ -117,7 +118,7 @@ class grayscalePublic
 
         # Settings
         $sb = $core->blog->settings->themes->get($core->blog->settings->system->theme . '_behavior');
-        $sb = @unserialize($sb);
+        $sb = $sb ? (unserialize($sb) ?: []) : [];
 
         if (!is_array($sb)) {
             $sb = [];
@@ -148,13 +149,13 @@ class grayscalePublic
     {
         global $core;
         # Social media links
-        $res     = '';
+        $res = '';
 
         $s = $core->blog->settings->themes->get($core->blog->settings->system->theme . '_stickers');
-        $s = @unserialize($s);
-            
+        $s = $s ? (unserialize($s) ?: []) : [];
+
         $s = array_filter($s, 'self::cleanSocialLinks');
-                
+
         $count = 0;
         foreach ($s as $sticker) {
             $res .= self::setSocialLink($count, ($count == count($s)), $sticker['label'], $sticker['url'], $sticker['image']);
@@ -183,6 +184,7 @@ class grayscalePublic
                 }
             }
         }
+
         return false;
     }
 }
@@ -194,7 +196,7 @@ class tplGrayscaleSimpleMenu
     {
         global $core;
 
-        if (!(boolean) $core->blog->settings->system->simpleMenu_active) {
+        if (!(bool) $core->blog->settings->system->simpleMenu_active) {
             return '';
         }
 
@@ -219,7 +221,7 @@ class tplGrayscaleSimpleMenu
 
         $ret = '';
 
-        if (!(boolean) $core->blog->settings->system->simpleMenu_active) {
+        if (!(bool) $core->blog->settings->system->simpleMenu_active) {
             return $ret;
         }
 
@@ -265,7 +267,7 @@ class tplGrayscaleSimpleMenu
                         $title = \html::escapeHTML(__($m['descr']));
                     }
                     if ($description == 'span' || $description == 'both') {
-                        $span = ' <span class="simple-menu-descr">' . html::escapeHTML(__($m['descr'])) . '</span>';
+                        $span = ' <span class="simple-menu-descr">' . \html::escapeHTML(__($m['descr'])) . '</span>';
                     }
                 }
 
@@ -284,7 +286,7 @@ class tplGrayscaleSimpleMenu
                     'title'  => $title,  // <a> link title (optional)
                     'span'   => $span,   // description (will be displayed after <a> link)
                     'active' => $active, // status (true/false)
-                    'class'  => ''      // additional <li> class (optional)
+                    'class'  => '',      // additional <li> class (optional)
                 ]);
 
                 # --BEHAVIOR-- publicSimpleMenuItem

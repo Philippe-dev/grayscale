@@ -5,15 +5,15 @@
  */
 
 // jQuery to collapse the navbar on scroll
-$(window).scroll(function () {
-  if ($(".navbar").offset().top > 50) {
-    $(".fixed-top").addClass("top-nav-collapse");
+$(window).scroll(() => {
+  if ($('.navbar').offset().top > 50) {
+    $('.fixed-top').addClass('top-nav-collapse');
   } else {
-    $(".fixed-top").removeClass("top-nav-collapse");
+    $('.fixed-top').removeClass('top-nav-collapse');
   }
 });
 
 // Closes the Responsive Menu on Menu Item Click
-$('.navbar-collapse ul li a').on('click', function () {
+$('.navbar-collapse ul li a').on('click', () => {
   $('.navbar-toggle:visible').click();
 });
