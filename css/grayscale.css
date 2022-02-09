@@ -10,18 +10,18 @@
  */
 
 /* ------------------------------------------------------------
-	1. HTML
+  1. HTML
 ------------------------------------------------------------- */
 
 body {
   width: 100%;
   height: 100%;
-  font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif;
   color: #666;
   background-color: #fff;
   /* UNCOMMENT FOR FULL GRAYSCALE EFFECT
-	-webkit-filter: grayscale(1);
-	filter: grayscale(1); */
+  -webkit-filter: grayscale(1);
+  filter: grayscale(1); */
 }
 
 html {
@@ -37,13 +37,13 @@ h5,
 h6 {
   margin: 0 0 0.6em;
   text-transform: uppercase;
-  font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: 700;
   letter-spacing: 0.05em;
 }
 
 h1 {
-  font-size: 1.5em
+  font-size: 1.5em;
 }
 
 p {
@@ -52,7 +52,7 @@ p {
   line-height: 1.5;
 }
 
-@media(min-width:768px) {
+@media (min-width: 768px) {
   p {
     margin: 1em 0;
     font-size: 1.2em;
@@ -62,15 +62,15 @@ p {
 
 a {
   color: #999;
-  -webkit-transition: all .2s ease-in-out;
-  -moz-transition: all .2s ease-in-out;
-  transition: all .2s ease-in-out;
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
   text-decoration: none;
 }
 
 a:hover,
 a:focus {
-  color: #555
+  color: #555;
 }
 
 pre {
@@ -88,12 +88,12 @@ pre {
 
 .navbar-custom .svg-inline--fa,
 .intro .svg-inline--fa {
-  filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, .7));
+  filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.7));
   vertical-align: middle;
 }
 
 /* ------------------------------------------------------------
-	2. SIMPLE MENU
+  2. SIMPLE MENU
 ------------------------------------------------------------- */
 
 .navbar-toggler {
@@ -105,26 +105,27 @@ pre {
   border-radius: 0.25rem;
   position: fixed;
   right: 1rem;
-  top: .8rem;
+  top: 0.8rem;
   color: #fff;
 }
 
 .navbar-custom {
   margin-bottom: 0;
-  border-bottom: 1px solid rgba(255, 255, 255, .3);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
   text-transform: uppercase;
-  font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif;
   background-color: transparent;
   text-shadow: 1px 1px 2px #000000;
   min-height: 2rem;
 }
 
 .navbar-custom.top-nav-collapse {
-  background: #555 url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAADCAYAAABWKLW/AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6RkQ0MjBCMjQ5NjIyMTFFNEEyRjNDRjM1Q0U4NDJEMDEiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6RkQ0MjBCMjU5NjIyMTFFNEEyRjNDRjM1Q0U4NDJEMDEiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpGRDQyMEIyMjk2MjIxMUU0QTJGM0NGMzVDRTg0MkQwMSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpGRDQyMEIyMzk2MjIxMUU0QTJGM0NGMzVDRTg0MkQwMSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PiaCVFIAAAAcSURBVHjaYvz//z8DDDCBCEZGRrAII7IMQIABAKIpBwFHizsqAAAAAElFTkSuQmCC") !important;
+  background: #555
+    url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAADCAYAAABWKLW/AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6RkQ0MjBCMjQ5NjIyMTFFNEEyRjNDRjM1Q0U4NDJEMDEiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6RkQ0MjBCMjU5NjIyMTFFNEEyRjNDRjM1Q0U4NDJEMDEiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpGRDQyMEIyMjk2MjIxMUU0QTJGM0NGMzVDRTg0MkQwMSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpGRDQyMEIyMzk2MjIxMUU0QTJGM0NGMzVDRTg0MkQwMSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PiaCVFIAAAAcSURBVHjaYvz//z8DDDCBCEZGRrAII7IMQIABAKIpBwFHizsqAAAAAElFTkSuQmCC') !important;
 }
 
 .navbar-custom.top-nav-collapse a {
-  color: #fff !important
+  color: #fff !important;
 }
 
 .navbar-custom .navbar-brand {
@@ -142,13 +143,13 @@ pre {
 }
 
 .navbar-custom .nav li a {
-  -webkit-transition: background .3s ease-in-out;
-  -moz-transition: background .3s ease-in-out;
-  transition: background .3s ease-in-out;
+  -webkit-transition: background 0.3s ease-in-out;
+  -moz-transition: background 0.3s ease-in-out;
+  transition: background 0.3s ease-in-out;
 }
 
 .navbar-custom .nav li a:hover {
-  color: rgba(255, 255, 255, .8);
+  color: rgba(255, 255, 255, 0.8);
   background-color: transparent;
 }
 
@@ -158,22 +159,22 @@ pre {
 }
 
 .navbar-custom .nav li.active a {
-  background-color: rgba(255, 255, 255, .3);
+  background-color: rgba(255, 255, 255, 0.3);
 }
 
 .navbar-custom .nav li.active a:hover {
   color: #fff;
 }
 
-@media(min-width:768px) {
+@media (min-width: 768px) {
   .navbar-custom {
     padding: 1.2em 0;
     border-bottom: 0;
     letter-spacing: 0.02em;
     background: 0 0;
-    -webkit-transition: background .5s ease-in-out, padding .5s ease-in-out;
-    -moz-transition: background .5s ease-in-out, padding .5s ease-in-out;
-    transition: background .5s ease-in-out, padding .5s ease-in-out;
+    -webkit-transition: background 0.5s ease-in-out, padding 0.5s ease-in-out;
+    -moz-transition: background 0.5s ease-in-out, padding 0.5s ease-in-out;
+    transition: background 0.5s ease-in-out, padding 0.5s ease-in-out;
   }
 
   .navbar-custom.top-nav-collapse {
@@ -216,11 +217,11 @@ pre {
 }
 
 /* ------------------------------------------------------------
-	3. HEADER
+  3. HEADER
 ------------------------------------------------------------- */
 
 .intro {
-  font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif;
   text-shadow: 1px 1px 2px #000000;
   background: #555 url(../img/intro-bg.jpg);
   background-size: cover;
@@ -228,7 +229,7 @@ pre {
 }
 
 .intro a {
-  text-decoration: none
+  text-decoration: none;
 }
 
 .intro h3 {
@@ -240,28 +241,28 @@ pre {
   list-style-type: none;
   font-size: 1em;
   margin: 0;
-  padding: 0
+  padding: 0;
 }
 
 .intro ul.subcategories {
   list-style-type: none;
   font-size: 1.5em;
   margin: 0;
-  padding: 0
+  padding: 0;
 }
 
 .intro ul.subcategories li {
   display: inline;
   margin: 0;
-  padding: 0
+  padding: 0;
 }
 
 .intro a {
-  color: #fff
+  color: #fff;
 }
 
 .intro .intro-footer {
-  margin-top: 5em
+  margin-top: 5em;
 }
 
 .intro .brand-heading {
@@ -273,7 +274,7 @@ pre {
   margin-top: 3em;
 }
 
-@media(min-width:768px) {
+@media (min-width: 768px) {
   .intro {
     height: 100%;
     padding: 0;
@@ -289,27 +290,27 @@ pre {
 }
 
 /* ------------------------------------------------------------
-	4. CONTENT
+  4. CONTENT
 ------------------------------------------------------------- */
 
 #content {
   width: 100%;
   padding: 2em 10% 6em;
-  font-weight: normal
+  font-weight: normal;
 }
 
-@media(max-width:767px) {
+@media (max-width: 767px) {
   #content {
     padding: 0 1em;
   }
 
   p.field,
   p.field textarea {
-    width: 100%
+    width: 100%;
   }
 
   p.field textarea {
-    border: 1px solid #ccc
+    border: 1px solid #ccc;
   }
 
   .btn-circle {
@@ -334,7 +335,8 @@ pre {
     height: 100%;
     padding: 2em 0;
     color: #fff;
-    background: #555 url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAADCAYAAABWKLW/AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6RkQ0MjBCMjQ5NjIyMTFFNEEyRjNDRjM1Q0U4NDJEMDEiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6RkQ0MjBCMjU5NjIyMTFFNEEyRjNDRjM1Q0U4NDJEMDEiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpGRDQyMEIyMjk2MjIxMUU0QTJGM0NGMzVDRTg0MkQwMSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpGRDQyMEIyMzk2MjIxMUU0QTJGM0NGMzVDRTg0MkQwMSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PiaCVFIAAAAcSURBVHjaYvz//z8DDDCBCEZGRrAII7IMQIABAKIpBwFHizsqAAAAAElFTkSuQmCC");
+    background: #555
+      url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAADCAYAAABWKLW/AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6RkQ0MjBCMjQ5NjIyMTFFNEEyRjNDRjM1Q0U4NDJEMDEiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6RkQ0MjBCMjU5NjIyMTFFNEEyRjNDRjM1Q0U4NDJEMDEiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpGRDQyMEIyMjk2MjIxMUU0QTJGM0NGMzVDRTg0MkQwMSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpGRDQyMEIyMzk2MjIxMUU0QTJGM0NGMzVDRTg0MkQwMSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PiaCVFIAAAAcSURBVHjaYvz//z8DDDCBCEZGRrAII7IMQIABAKIpBwFHizsqAAAAAElFTkSuQmCC');
   }
 
   .blog-section a {
@@ -346,7 +348,7 @@ pre {
   position: relative;
   padding: 0;
   text-align: left;
-  margin: 3em 0
+  margin: 3em 0;
 }
 
 .day-date {
@@ -354,9 +356,9 @@ pre {
 }
 
 .post-title {
-  margin: .5em 0;
+  margin: 0.5em 0;
   line-height: 1.17;
-  font-size: 2.8em
+  font-size: 2.8em;
 }
 
 @media (max-width: 320px) {
@@ -389,15 +391,15 @@ pre {
   height: auto;
   border: 1px solid #ddd;
   background: #eee;
-  display: flex
+  display: flex;
 }
 
 .dc-post .post-infos {
-  margin-bottom: 2em
+  margin-bottom: 2em;
 }
 
 .post-infos span {
-  white-space: nowrap
+  white-space: nowrap;
 }
 
 .post-content img,
@@ -407,8 +409,7 @@ pre {
   padding: 2px;
 }
 
-@media(min-width:768px) {
-
+@media (min-width: 768px) {
   .post-content img,
   .post-excerpt img {
     max-width: 100%;
@@ -426,12 +427,12 @@ img.smiley {
 
 .post-content,
 .post-excerpt {
-  font-size: 1.2em
+  font-size: 1.2em;
 }
 
 .post-content p,
 .post-excerpt p {
-  font-size: 1em
+  font-size: 1em;
 }
 
 .post-content ul,
@@ -440,23 +441,23 @@ img.smiley {
 }
 
 .post-content ul {
-  list-style-type: circle
+  list-style-type: circle;
 }
 
 .post-content ul,
 .post-content ol {
-  margin: .5em 0;
+  margin: 0.5em 0;
   font-size: inherit;
 }
 
 .post-content li {
-  margin: .5em 0;
+  margin: 0.5em 0;
   font-size: inherit;
-  list-style-type: inherit
+  list-style-type: inherit;
 }
 
 .footnotes {
-  font-size: .875em;
+  font-size: 0.875em;
 }
 
 .footnotes h4 {
@@ -466,7 +467,7 @@ img.smiley {
 
 .read-it {
   margin: 0 0 1em;
-  font-size: 1.5em
+  font-size: 1.5em;
 }
 
 .post-info-co {
@@ -475,7 +476,7 @@ img.smiley {
   margin: 0;
   font-size: 1.2em;
   font-style: italic;
-  padding-right: .5em;
+  padding-right: 0.5em;
   max-width: 80%;
 }
 
@@ -549,7 +550,7 @@ img.smiley {
   list-style-type: none;
   margin: 0;
   padding: 0;
-  font-size: 1.2em
+  font-size: 1.2em;
 }
 
 #comments,
@@ -587,8 +588,8 @@ img.smiley {
   margin-top: 0;
 }
 
-#comments>ul {
-  margin-left: .2em;
+#comments > ul {
+  margin-left: 0.2em;
   padding-left: 0;
   list-style-type: none;
 }
@@ -601,7 +602,7 @@ img.smiley {
 }
 
 .comment-info {
-  padding-bottom: .2em;
+  padding-bottom: 0.2em;
   line-height: 1.25;
   color: #555;
 }
@@ -617,7 +618,7 @@ img.smiley {
 
 #comments dl {
   font-size: 1.2em;
-  margin: 3em 1em
+  margin: 3em 1em;
 }
 
 #comments dd {
@@ -627,17 +628,17 @@ img.smiley {
 }
 
 /* ------------------------------------------------------------
-	5. BUTTONS
+  5. BUTTONS
 ------------------------------------------------------------- */
 
 .btn {
   border-radius: 0;
   text-transform: uppercase;
-  font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: 400;
-  -webkit-transition: all .3s ease-in-out;
-  -moz-transition: all .3s ease-in-out;
-  transition: all .3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 
 .btn-default {
@@ -663,9 +664,9 @@ img.smiley {
   font-size: 3.2em;
   color: #fff;
   background: 0 0;
-  -webkit-transition: background .3s ease-in-out;
-  -moz-transition: background .3s ease-in-out;
-  transition: background .3s ease-in-out;
+  -webkit-transition: background 0.3s ease-in-out;
+  -moz-transition: background 0.3s ease-in-out;
+  transition: background 0.3s ease-in-out;
 }
 
 .btn-circle.up {
@@ -677,13 +678,13 @@ img.smiley {
 .btn-circle:hover,
 .btn-circle:focus {
   color: #fff;
-  background: rgba(255, 255, 255, .1);
+  background: rgba(255, 255, 255, 0.1);
 }
 
 .btn-circle.up:hover,
 .btn-circle.up:focus {
   color: #555;
-  background: rgba(255, 255, 255, .1);
+  background: rgba(255, 255, 255, 0.1);
 }
 
 .btn-circle i.animated {
@@ -711,7 +712,7 @@ img.smiley {
 }
 
 /* ------------------------------------------------------------
-	6. FORMS
+  6. FORMS
 ------------------------------------------------------------- */
 
 #post-comments,
@@ -727,7 +728,7 @@ img.smiley {
 
 .field label {
   display: block;
-  font-size: .875em;
+  font-size: 0.875em;
   color: #666;
   text-indent: 6px;
 }
@@ -743,7 +744,7 @@ img.smiley {
 }
 
 .field textarea {
-  padding: .5em 1em;
+  padding: 0.5em 1em;
 }
 
 .field input:focus,
@@ -787,7 +788,7 @@ img.smiley {
   width: 78%;
   font-size: 100%;
   padding-left: 2px;
-  color: #000
+  color: #000;
 }
 
 #q:focus {
@@ -795,7 +796,7 @@ img.smiley {
 }
 
 #search .submit {
-  background: #706F6F;
+  background: #706f6f;
   color: #fff;
   vertical-align: top;
   width: 20%;
@@ -809,12 +810,12 @@ img.smiley {
 }
 
 /* ------------------------------------------------------------
-	7. MENUBAR
+  7. MENUBAR
 ------------------------------------------------------------- */
 
 #menubar {
   padding: 2em 0;
-  font-size: 1.2em
+  font-size: 1.2em;
 }
 
 .blog-section {
@@ -822,35 +823,36 @@ img.smiley {
   height: 100%;
   padding: 2em 0;
   color: #fff;
-  background: #555 url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAADCAYAAABWKLW/AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6RkQ0MjBCMjQ5NjIyMTFFNEEyRjNDRjM1Q0U4NDJEMDEiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6RkQ0MjBCMjU5NjIyMTFFNEEyRjNDRjM1Q0U4NDJEMDEiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpGRDQyMEIyMjk2MjIxMUU0QTJGM0NGMzVDRTg0MkQwMSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpGRDQyMEIyMzk2MjIxMUU0QTJGM0NGMzVDRTg0MkQwMSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PiaCVFIAAAAcSURBVHjaYvz//z8DDDCBCEZGRrAII7IMQIABAKIpBwFHizsqAAAAAElFTkSuQmCC");
+  background: #555
+    url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAADCAYAAABWKLW/AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6RkQ0MjBCMjQ5NjIyMTFFNEEyRjNDRjM1Q0U4NDJEMDEiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6RkQ0MjBCMjU5NjIyMTFFNEEyRjNDRjM1Q0U4NDJEMDEiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpGRDQyMEIyMjk2MjIxMUU0QTJGM0NGMzVDRTg0MkQwMSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpGRDQyMEIyMzk2MjIxMUU0QTJGM0NGMzVDRTg0MkQwMSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PiaCVFIAAAAcSURBVHjaYvz//z8DDDCBCEZGRrAII7IMQIABAKIpBwFHizsqAAAAAElFTkSuQmCC');
 }
 
 .blog-section a {
-  color: #ddd
+  color: #ddd;
 }
 
 .blog-section a:hover {
-  color: #fff
+  color: #fff;
 }
 
 .blog-section h2 {
-  font-size: 1.5em
+  font-size: 1.5em;
 }
 
 #blognav,
 #blogextra,
 #blogcustom {
   text-align: left;
-  margin-top: 3em
+  margin-top: 3em;
 }
 
-#blognav>div,
-#blogextra>div,
-#blogcustom>div {
-  margin-bottom: 3em
+#blognav > div,
+#blogextra > div,
+#blogcustom > div {
+  margin-bottom: 3em;
 }
 
-@media(min-width:767px) {
+@media (min-width: 767px) {
   .content-section {
     padding-top: 250px;
   }
@@ -858,12 +860,12 @@ img.smiley {
   #blognav,
   #blogextra,
   #blogcustom {
-    margin-top: 5em
+    margin-top: 5em;
   }
 }
 
 /* ------------------------------------------------------------
-	8. FOOTER
+  8. FOOTER
 ------------------------------------------------------------- */
 ul.banner-social-buttons {
   margin: 5em 2em 1em;
@@ -876,14 +878,14 @@ ul.banner-social-buttons li {
 
 ul.banner-social-buttons li a {
   padding: 1em;
-  margin: .2em
+  margin: 0.2em;
 }
 
 ul.banner-social-buttons li .svg-inline--fa {
-  margin-right: .5em;
+  margin-right: 0.5em;
 }
 
-@media(max-width:767px) {
+@media (max-width: 767px) {
   ul.banner-social-buttons li {
     display: block;
     margin: 2em 0;
@@ -892,7 +894,7 @@ ul.banner-social-buttons li .svg-inline--fa {
 }
 
 footer {
-  padding: 3em
+  padding: 3em;
 }
 
 footer p {

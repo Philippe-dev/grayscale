@@ -8,6 +8,7 @@
  * @copyright Philippe aka amalgame
  * @copyright GPL-2.0-only
  */
+
 namespace themes\grayscale;
 
 if (!defined('DC_RC_PATH')) {
@@ -40,9 +41,9 @@ class tplGrayscaleThemeAdmin
             $theme_url = \http::concatURL($core->blog->url, $core->blog->settings->system->themes_url . '/' . $core->blog->settings->system->theme);
         }
 
-        echo '<script src="' . $theme_url . '/js/admin.js' . '"></script>'."\n".
-        '<script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>'."\n".
-       '<link rel="stylesheet" media="screen" href="' . $theme_url . '/css/admin.css'. '" />'."\n";
+        echo '<script src="' . $theme_url . '/js/admin.js' . '"></script>' . "\n" .
+        '<script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>' . "\n" .
+       '<link rel="stylesheet" media="screen" href="' . $theme_url . '/css/admin.css' . '" />' . "\n";
 
         $core->auth->user_prefs->addWorkspace('accessibility');
         if (!$core->auth->user_prefs->accessibility->nodragdrop) {
@@ -74,7 +75,7 @@ class tplGrayscaleThemeAdmin
         if ($core->blog->settings->system->theme != 'grayscale') {
             return;
         }
-        
+
         if (isset($csp['script-src'])) {
             $csp['script-src'] .= ' use.fontawesome.com';
         } else {

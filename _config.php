@@ -20,11 +20,11 @@ if (preg_match('#^http(s)?://#', $core->blog->settings->system->themes_url)) {
     $theme_url = \http::concatURL($core->blog->url, $core->blog->settings->system->themes_url . '/' . $core->blog->settings->system->theme);
 }
 
-$standalone_config = (boolean) $core->themes->moduleInfo($core->blog->settings->system->theme, 'standalone_config');
+$standalone_config = (bool) $core->themes->moduleInfo($core->blog->settings->system->theme, 'standalone_config');
 
 # random or default image behavior
 $sb = $GLOBALS['core']->blog->settings->themes->get($GLOBALS['core']->blog->settings->system->theme . '_behavior');
-$sb = @unserialize($sb);
+$sb = $sb ? (unserialize($sb) ?: []) : [];
 
 if (!is_array($sb)) {
     $sb = [];
@@ -36,7 +36,7 @@ if (!isset($sb['default-image'])) {
 
 # default or user defined images settings
 $si = $GLOBALS['core']->blog->settings->themes->get($GLOBALS['core']->blog->settings->system->theme . '_images');
-$si = @unserialize($si);
+$si = $si ? (unserialize($si) ?: []) : [];
 
 if (!is_array($si)) {
     $si = [];
@@ -65,7 +65,7 @@ if (!isset($sb['use-featuredMedia'])) {
 }
 
 $stickers = $core->blog->settings->themes->get($core->blog->settings->system->theme . '_stickers');
-$stickers = @unserialize($stickers);
+$stickers = $stickers ? (unserialize($stickers) ?: []) : [];
 
 $stickers_full = [];
 // Get all sticker images already used
@@ -77,15 +77,15 @@ if (is_array($stickers)) {
 
 // Get social media images
 $stickers_images = ['fab fa-diaspora','fas fa-rss','fab fa-linkedin-in','fab fa-gitlab','fab fa-github','fab fa-twitter','fab fa-facebook-f',
-'fab fa-instagram', 'fab fa-mastodon','fab fa-pinterest','fab fa-snapchat','fab fa-soundcloud','fab fa-youtube'];
+    'fab fa-instagram', 'fab fa-mastodon','fab fa-pinterest','fab fa-snapchat','fab fa-soundcloud','fab fa-youtube', ];
 if (is_array($stickers_images)) {
     foreach ($stickers_images as $v) {
         if (!in_array($v, $stickers_full)) {
             // image not already used
             $stickers[] = [
-                    'label' => null,
-                    'url'   => null,
-                    'image' => $v];
+                'label' => null,
+                'url'   => null,
+                'image' => $v, ];
         }
     }
 }
@@ -104,7 +104,7 @@ if (!empty($_POST)) {
             $sb['default-image'] = $_POST['default-image'];
 
             # use featured media for posts background images
-            $sb['use-featuredMedia'] = (integer) !empty($_POST['use-featuredMedia']);
+            $sb['use-featuredMedia'] = (int) !empty($_POST['use-featuredMedia']);
 
             # default image setting
             if (!empty($_POST['default-image-url'])) {
@@ -120,7 +120,6 @@ if (!empty($_POST)) {
                 $si['default-image-tb-url'] = $theme_url . '/.intro-bg_s.jpg';
             }
 
-        
             for ($i = 0; $i < 6; $i++) {
                 # random images settings
                 if (!empty($_POST['random-image-' . $i . '-url'])) {
@@ -144,7 +143,7 @@ if (!empty($_POST)) {
                 $stickers[] = [
                     'label' => $_POST['sticker_label'][$i],
                     'url'   => $_POST['sticker_url'][$i],
-                    'image' => $_POST['sticker_image'][$i]
+                    'image' => $_POST['sticker_image'][$i],
                 ];
             }
 
@@ -160,7 +159,7 @@ if (!empty($_POST)) {
                     $new_stickers[] = [
                         'label' => $stickers[$k]['label'],
                         'url'   => $stickers[$k]['url'],
-                        'image' => $stickers[$k]['image']
+                        'image' => $stickers[$k]['image'],
                     ];
                 }
                 $stickers = $new_stickers;
@@ -188,14 +187,13 @@ if (!empty($_POST)) {
 if (!$standalone_config) {
     echo '</form>';
 }
-    
+
 echo '<div class="multi-part" id="themes-list' . ($conf_tab == 'presentation' ? '' : '-presentation') . '" title="' . __('Presentation') . '">';
-    
+
 echo '<form id="theme_config" action="' . $core->adminurl->get('admin.blog.theme', ['conf' => '1']) .
     '" method="post" enctype="multipart/form-data">';
 
 echo '<div class="fieldset">';
-
 
 echo '<h3>' . __('Background image') . '</h3>';
 
@@ -207,9 +205,9 @@ form::radio(['default-image','default-image-2'], false, !$sb['default-image']) .
 __('random image') . '</label></p>';
 
 if ($core->plugins->moduleExists('featuredMedia')) {
-    echo '<p class="vertical-separator"><label class="classic" for="use-featuredMedia">'.
-        form::checkbox('use-featuredMedia', '1', $sb['use-featuredMedia']).
-        __('Use featured media for posts').'</label></p>';
+    echo '<p class="vertical-separator"><label class="classic" for="use-featuredMedia">' .
+        form::checkbox('use-featuredMedia', '1', $sb['use-featuredMedia']) .
+        __('Use featured media for posts') . '</label></p>';
 }
 
 echo '</div>';
@@ -232,7 +230,6 @@ echo '<p class="grayscale-buttons"><button type="button" id="default-image-selec
 
 echo '<p class="sr-only">' . form::field('default-image-url', 30, 255, $si['default-image-url']) . '</p>';
 echo '<p class="sr-only">' . form::field('default-image-tb-url', 30, 255, $si['default-image-tb-url']) . '</p>';
-
 
 echo '</div>';
 
@@ -291,7 +288,7 @@ foreach ($stickers as $i => $v) {
         'min'     => 0,
         'max'     => count($stickers),
         'default' => $count,
-        'class'   => 'position'
+        'class'   => 'position',
     ]) .
     form::hidden(['dynorder[]', 'dynorder-' . $i], $i) . '</td>' .
     '<td class="linkimg">' . form::hidden(['sticker_image[]'], $v['image']) . '<i class="' . $v['image'] . '" title="' . $v['label'] . '"></i> ' . '</td>' .
@@ -306,7 +303,7 @@ echo
     echo '<p><input type="hidden" name="conf_tab" value="links" /></p>';
     echo '<p class="clear">' . form::hidden('ds_order', '') . '<input type="submit" value="' . __('Save') . '" />' . $core->formNonce() . '</p>';
     echo '</form>';
-    
+
 echo '</div>'; // Close tab
 
 dcPage::helpBlock('grayscale');
