@@ -22,12 +22,10 @@ $(function () {
   $('#default-image-url').on('change', (e) => {
     const url = `${$('input[name="theme-url"]').val()}/img/intro-bg.jpg`;
     let thumb = `${$('input[name="theme-url"]').val()}/img/.intro-bg_s.jpg`;
-    if ($('#default-image-url').val() == url) {
-      $('#default-image-thumb-src').attr('src', thumb);
-    } else {
+    if ($('#default-image-url').val() != url) {
       thumb = $('#default-image-tb-url').val();
-      $('#default-image-thumb-src').attr('src', thumb);
     }
+    $('#default-image-thumb-src').attr('src', thumb);
   });
 
   // random images
@@ -54,8 +52,7 @@ $(function () {
     $(`#random-image-${i}-url`).on('change', (e) => {
       const url = `${$('input[name="theme-url"]').val()}/img/bg-intro-${i}.jpg`;
       let thumb = `${$('input[name="theme-url"]').val()}/img/.bg-intro-${i}_s.jpg`;
-      if ($(`#random-image-${i}-url`).val() == url) {
-      } else {
+      if ($(`#random-image-${i}-url`).val() != url) {
         thumb = $(`#random-image-${i}-tb-url`).val();
       }
       $(`#random-image-${i}-thumb-src`).attr('src', thumb);
@@ -79,7 +76,7 @@ $(function () {
     },
   );
   $('#theme_config').submit(() => {
-    let order = [];
+    const order = [];
     $('#stickerslist tr td input.position').each(function () {
       order.push(this.name.replace(/^order\[([^\]]+)\]$/, '$1'));
     });
