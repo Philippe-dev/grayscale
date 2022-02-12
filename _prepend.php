@@ -6,7 +6,7 @@
  * @subpackage Themes
  *
  * @copyright Philippe aka amalgame
- * @copyright GPL-2.0-only
+ * @copyright GPL-2.0
  */
 
 namespace themes\grayscale;
