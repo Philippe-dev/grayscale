@@ -15,7 +15,7 @@ namespace themes\grayscale;
      return;
  }
 
-\l10n::set(dirname(__FILE__) . '/locales/' . $_lang . '/main');
+\l10n::set(dirname(__FILE__) . '/locales/' . dcCore::app()->lang . '/main');
 
 # Grayscale random image CSS and js files
 \dcCore::app()->addBehavior('publicHeadContent', [__NAMESPACE__ . '\grayscalePublic','publicHeadContent']);
