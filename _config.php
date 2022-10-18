@@ -299,10 +299,10 @@ foreach ($stickers as $i => $v) {
 echo
     '</tbody>' .
     '</table></div>';
-    echo '</div>';
-    echo '<p><input type="hidden" name="conf_tab" value="links" /></p>';
-    echo '<p class="clear">' . form::hidden('ds_order', '') . '<input type="submit" value="' . __('Save') . '" />' . dcCore::app()->formNonce() . '</p>';
-    echo '</form>';
+echo '</div>';
+echo '<p><input type="hidden" name="conf_tab" value="links" /></p>';
+echo '<p class="clear">' . form::hidden('ds_order', '') . '<input type="submit" value="' . __('Save') . '" />' . dcCore::app()->formNonce() . '</p>';
+echo '</form>';
 
 echo '</div>'; // Close tab
 

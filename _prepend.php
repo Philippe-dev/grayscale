@@ -30,7 +30,6 @@ class tplGrayscaleThemeAdmin
 {
     public static function adminPageHTMLHead()
     {
-
         if (\dcCore::app()->blog->settings->system->theme !== basename(dirname(__FILE__))) {
             return;
         }
@@ -54,7 +53,6 @@ class tplGrayscaleThemeAdmin
 
     public static function adminPopupMedia($editor = '')
     {
-
         if (empty($editor) || $editor != 'admin.blog.theme') {
             return;
         }

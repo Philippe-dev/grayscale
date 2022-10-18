@@ -11,9 +11,9 @@
 
 namespace themes\grayscale;
 
- if (!defined('DC_RC_PATH')) {
-     return;
- }
+if (!defined('DC_RC_PATH')) {
+    return;
+}
 
 \l10n::set(dirname(__FILE__) . '/locales/' . \dcCore::app()->lang . '/main');
 
@@ -31,7 +31,6 @@ class grayscalePublic
 {
     public static function publicHeadContent()
     {
-
         # Settings
         if (preg_match('#^http(s)?://#', \dcCore::app()->blog->settings->system->themes_url)) {
             $theme_url = \http::concatURL(\dcCore::app()->blog->settings->system->themes_url, '/' . \dcCore::app()->blog->settings->system->theme);
@@ -112,7 +111,6 @@ class grayscalePublic
     }
     public static function publicFooterContent()
     {
-
         # Settings
         $sb = \dcCore::app()->blog->settings->themes->get(\dcCore::app()->blog->settings->system->theme . '_behavior');
         $sb = $sb ? (unserialize($sb) ?: []) : [];
@@ -190,7 +188,6 @@ class tplGrayscaleSimpleMenu
     # Template function
     public static function GrayscaleSimpleMenu($attr)
     {
-
         if (!(bool) \dcCore::app()->blog->settings->system->simpleMenu_active) {
             return '';
         }
@@ -212,7 +209,6 @@ class tplGrayscaleSimpleMenu
 
     public static function displayMenu($class = '', $id = '', $description = '')
     {
-
         $ret = '';
 
         if (!(bool) \dcCore::app()->blog->settings->system->simpleMenu_active) {
