@@ -1,6 +1,6 @@
 <?php
 /**
- * @brief Resume, a theme for Dotclear 2
+ * @brief Grayscale, a theme for Dotclear 2
  *
  * @package Dotclear
  * @subpackage Themes
@@ -11,7 +11,7 @@
  * @copyright GPL-2.0
  */
 
-namespace Dotclear\Theme\Resume;
+ namespace Dotclear\Theme\Grayscale;
 
 use dcCore;
 use dcNsProcess;
