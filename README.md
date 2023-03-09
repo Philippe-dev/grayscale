@@ -10,7 +10,7 @@ A Dotclear theme based on Start Bootstrap Grayscale template (see below)
 
 ## Creator
 
-Start Bootstrap was created by and is maintained by **David Miller**, Managing Parter at [Iron Summit Media Strategies](http://www.ironsummitmedia.com/).
+Start Bootstrap was created by and is maintained by **David Miller**.
 
 * https://twitter.com/davidmillerskt
 * https://github.com/davidtmiller
