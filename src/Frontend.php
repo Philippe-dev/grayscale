@@ -11,7 +11,7 @@
  * @copyright GPL-2.0
  */
 
- namespace Dotclear\Theme\Grayscale;
+namespace Dotclear\Theme\Grayscale;
 
 use ArrayObject;
 use dcCore;
@@ -38,15 +38,17 @@ class Frontend extends dcNsProcess
         l10n::set(__DIR__ . '/../locales/' . dcCore::app()->lang . '/main');
 
         # Templates
-        dcCore::app()->tpl->addValue('ResumeSimpleMenu', [self::class, 'resumeSimpleMenu']);
-        dcCore::app()->tpl->addValue('resumeUserColors', [self::class, 'resumeUserColors']);
-        dcCore::app()->tpl->addValue('resumeUserImageSrc', [self::class, 'resumeUserImageSrc']);
-        dcCore::app()->tpl->addValue('resumeSocialLinks', [self::class, 'resumeSocialLinks']);
+        dcCore::app()->addBehavior('publicHeadContent', [self::class, 'publicHeadContent']);
+        dcCore::app()->addBehavior('publicFooterContent', [self::class, 'publicFooterContent']);
+        dcCore::app()->tpl->addValue('grayscaleSimpleMenu', [self::class, 'grayscaleSimpleMenu']);
+        dcCore::app()->tpl->addValue('grayscaleSocialLinks', [self::class, 'grayscaleSocialLinks']);
 
         return true;
     }
 
-    public static function resumeSimpleMenu(ArrayObject $attr): string
+    
+
+    public static function grayscaleSimpleMenu(ArrayObject $attr): string
     {
         if (!(bool) dcCore::app()->blog->settings->system->simpleMenu_active) {
             return '';
@@ -164,73 +166,11 @@ class Frontend extends dcNsProcess
         return $ret;
     }
 
-    public static function resumeUserColors(ArrayObject $attr): string
-    {
-        return '<?php echo ' . self::class . '::resumeUserColorsHelper(); ?>';
-    }
-
-    public static function resumeUserColorsHelper()
-    {
-        $style = dcCore::app()->blog->settings->themes->get(dcCore::app()->blog->settings->system->theme . '_style');
-        $style = $style ? (unserialize($style) ?: []) : [];
-
-        if (!is_array($style)) {
-            $style = [];
-        }
-        if (!isset($style['main_color'])) {
-            $style['main_color'] = '#bd5d38';
-        }
-
-        $resume_user_main_color = $style['main_color'];
-
-        if (preg_match('#^http(s)?://#', dcCore::app()->blog->settings->system->themes_url)) {
-            $theme_url = http::concatURL(dcCore::app()->blog->settings->system->themes_url, '/' . dcCore::app()->blog->settings->system->theme);
-        } else {
-            $theme_url = http::concatURL(dcCore::app()->blog->url, dcCore::app()->blog->settings->system->themes_url . '/' . dcCore::app()->blog->settings->system->theme);
-        }
-
-        $resume_user_colors_css_url = $theme_url . '/css/resume.user.colors.php';
-
-        if ($resume_user_main_color != '#bd5d38') {
-            $resume_user_main_color = substr($resume_user_main_color, 1);
-
-            return '<link rel="stylesheet" type="text/css" href="' . $resume_user_colors_css_url . '?main_color=' . $resume_user_main_color . '" media="screen" />';
-        }
-    }
-
-    public static function resumeUserImageSrc($attr)
-    {
-        return '<?php echo ' . self::class . '::resumeUserImageSrcHelper(); ?>';
-    }
-
-    public static function resumeUserImageSrcHelper()
-    {
-        if (preg_match('#^http(s)?://#', dcCore::app()->blog->settings->system->themes_url)) {
-            $theme_url = http::concatURL(dcCore::app()->blog->settings->system->themes_url, '/' . dcCore::app()->blog->settings->system->theme);
-        } else {
-            $theme_url = http::concatURL(dcCore::app()->blog->url, dcCore::app()->blog->settings->system->themes_url . '/' . dcCore::app()->blog->settings->system->theme);
-        }
-
-        $resume_default_image_url = $theme_url . '/img/profile.jpg';
-
-        $style = dcCore::app()->blog->settings->themes->get(dcCore::app()->blog->settings->system->theme . '_style');
-        $style = $style ? (unserialize($style) ?: []) : [];
-
-        if (!is_array($style)) {
-            $style = [];
-        }
-        if (!isset($style['resume_user_image']) || empty($style['resume_user_image'])) {
-            $style['resume_user_image'] = $resume_default_image_url;
-        }
-
-        return $style['resume_user_image'];
-    }
-
-    public static function resumeSocialLinks($attr)
-    {
-        return '<?php echo ' . self::class . '::resumeSocialLinksHelper(); ?>';
-    }
-    public static function resumeSocialLinksHelper()
+     public static function grayscaleSocialLinks($attr)
+     {
+         return '<?php echo ' . self::class . '::grayscaleSocialLinksHelper(); ?>';
+     }
+    public static function grayscaleSocialLinksHelper()
     {
         # Social media links
         $res = '';
