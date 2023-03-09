@@ -16,9 +16,9 @@ $this->registerModule(
     'Grayscale',
     'Grayscale Bootstrap 5 theme for Dotclear',
     'Philippe aka amalgame and contributors',
-    '2.7',
+    '3.0',
     [
-        'requires'          => [['core', '2.24']],
+        'requires'          => [['core', '2.25']],
         'standalone_config' => true,
         'type'              => 'theme',
         'tplset'            => 'mustek',
