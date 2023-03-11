@@ -33,7 +33,7 @@
 				<div class="text-center">
 					<h1><i class="fa fa-comments"></i> {{tpl:EntryTitle encode_html="1"}}</h1>
 					<p class="text-white">{{tpl:BlogDescription encode_html="1" remove_html="1"}}</p>
-					<a href="#content" class="btn btn-circle page-scroll">
+					<a href="#content" class="btn btn-circle page-scroll js-scroll-trigger">
 						<i class="fa fa-angle-double-down animated"></i>
 					</a>
 					<tpl:EntryIf operator="or" comments_active="1" pings_active="1">
@@ -277,7 +277,7 @@
 		</div>
 		</article>
 
-		<p><a href="#page-top" class="btn btn-circle page-scroll up"><i class="fa fa-angle-double-up animated"></i></a>
+		<p><a href="#page-top" class="btn btn-circle page-scroll up js-scroll-trigger"><i class="fa fa-angle-double-up animated"></i></a>
 		</p>
 		</div>
 		</div>
