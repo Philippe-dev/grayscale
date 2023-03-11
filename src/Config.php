@@ -135,7 +135,7 @@ class Config extends dcNsProcess
         if (!empty($_POST)) {
             try {
                 // HTML
-                if ($_POST['conf_tab'] === 'presentation') {
+                if (dcCore::app()->admin->conf_tab === 'presentation') {
                     # random or default image behavior
                     $behavior['default-image'] = $_POST['default-image'];
 
@@ -146,14 +146,14 @@ class Config extends dcNsProcess
                     if (!empty($_POST['default-image-url'])) {
                         $images['default-image-url'] = $_POST['default-image-url'];
                     } else {
-                        $images['default-image-url'] = $theme_url . '/img/intro-bg.jpg';
+                        $images['default-image-url'] = dcCore::app()->admin->theme_url . '/img/intro-bg.jpg';
                     }
 
                     # default image thumbnail settings
                     if (!empty($_POST['default-image-tb-url'])) {
                         $images['default-image-tb-url'] = $_POST['default-image-tb-url'];
                     } else {
-                        $images['default-image-tb-url'] = $theme_url . '/.intro-bg_s.jpg';
+                        $images['default-image-tb-url'] = dcCore::app()->admin->theme_url . '/.intro-bg_s.jpg';
                     }
 
                     for ($i = 0; $i < 6; $i++) {
@@ -161,14 +161,14 @@ class Config extends dcNsProcess
                         if (!empty($_POST['random-image-' . $i . '-url'])) {
                             $images['random-image-' . $i . '-url'] = $_POST['random-image-' . $i . '-url'];
                         } else {
-                            $images['random-image-' . $i . '-url'] = $theme_url . '/img/bg-intro-' . $i . '.jpg';
+                            $images['random-image-' . $i . '-url'] = dcCore::app()->admin->theme_url . '/img/bg-intro-' . $i . '.jpg';
                         }
 
                         # random images thumbnail settings
                         if (!empty($_POST['random-image-' . $i . '-tb-url'])) {
                             $images['random-image-' . $i . '-tb-url'] = $_POST['random-image-' . $i . '-tb-url'];
                         } else {
-                            $images['random-image-' . $i . '-tb-url'] = $theme_url . '/img/.bg-intro-' . $i . '_s.jpg';
+                            $images['random-image-' . $i . '-tb-url'] = dcCore::app()->admin->theme_url . '/img/.bg-intro-' . $i . '_s.jpg';
                         }
                     }
 
@@ -176,7 +176,7 @@ class Config extends dcNsProcess
                     dcCore::app()->admin->images   = $images;
                 }
 
-                if ($_POST['conf_tab'] === 'links') {
+                if (dcCore::app()->admin->conf_tab === 'links') {
                     $stickers = [];
                     for ($i = 0; $i < count($_POST['sticker_image']); $i++) {
                         $stickers[] = [
