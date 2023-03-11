@@ -61,7 +61,7 @@ class Prepend extends dcNsProcess
             if (dcCore::app()->blog->settings->system->theme !== basename(dirname(__DIR__))) {
                 return;
             }
-            
+
             if (isset($csp['script-src'])) {
                 $csp['script-src'] .= ' use.fontawesome.com';
             } else {
