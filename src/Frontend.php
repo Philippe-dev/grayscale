@@ -46,7 +46,111 @@ class Frontend extends dcNsProcess
         return true;
     }
 
-    
+    public static function publicHeadContent()
+    {
+        # Settings
+        if (preg_match('#^http(s)?://#', dcCore::app()->blog->settings->system->themes_url)) {
+            $theme_url = http::concatURL(dcCore::app()->blog->settings->system->themes_url, '/' . dcCore::app()->blog->settings->system->theme);
+        } else {
+            $theme_url = http::concatURL(dcCore::app()->blog->url, dcCore::app()->blog->settings->system->themes_url . '/' . dcCore::app()->blog->settings->system->theme);
+        }
+
+        $sb = dcCore::app()->blog->settings->themes->get(dcCore::app()->blog->settings->system->theme . '_behavior');
+        $sb = $sb ? (unserialize($sb) ?: []) : [];
+
+        if (!is_array($sb)) {
+            $sb = [];
+        }
+
+        if (!isset($sb['default-image'])) {
+            $sb['default-image'] = 1;
+        }
+
+        if (!isset($sb['use-featuredMedia'])) {
+            $sb['use-featuredMedia'] = 0;
+        }
+
+        $si = dcCore::app()->blog->settings->themes->get(dcCore::app()->blog->settings->system->theme . '_images');
+        $si = $si ? (unserialize($si) ?: []) : [];
+
+        if (!is_array($si)) {
+            $si = [];
+        }
+
+        if (!isset($si['default-image-url'])) {
+            $si['default-image-url'] = $theme_url . '/img/intro-bg.jpg';
+        }
+
+        if (!isset($si['default-image-tb-url'])) {
+            $si['default-image-tb-url'] = $theme_url . '/img/.intro-bg_s.jpg';
+        }
+
+        for ($i = 0; $i < 6; $i++) {
+            if (!isset($si['random-image-' . $i . '-url'])) {
+                $si['random-image-' . $i . '-url'] = $theme_url . '/img/bg-intro-' . $i . '.jpg';
+            }
+            if (!isset($si['random-image-' . $i . '-tb-url'])) {
+                $si['random-image-' . $i . '-tb-url'] = $theme_url . '/img/.bg-intro-' . $i . '_s.jpg';
+            }
+        }
+
+        # check if post has featured media
+        if (dcCore::app()->ctx->posts !== null && dcCore::app()->plugins->moduleExists('featuredMedia')) {
+            dcCore::app()->ctx->featured = new \ArrayObject(dcCore::app()->media->getPostMedia(dcCore::app()->ctx->posts->post_id, null, 'featured'));
+            foreach (dcCore::app()->ctx->featured as $featured_i => $featured_f) {
+                $GLOBALS['featured_i'] = $featured_i;
+                $GLOBALS['featured_f'] = $featured_f;
+            }
+            if (isset($featured_f->file_url)) {
+                $featuredImageUrl = $featured_f->file_url;
+            }
+        }
+
+        $rs = '<style>';
+        if ($sb['use-featuredMedia'] && !empty($featuredImageUrl)) {
+            $rs .= '.intro { background-image: url("' . $featuredImageUrl . '"); }';
+        } else {
+            if ($sb['default-image']) {
+                $rs .= '.intro { background-image: url("' . $si['default-image-url'] . '"); }';
+            } else {
+                for ($i = 0; $i < 6; $i++) {
+                    $rs .= '.intro.round' . $i . ' {' .
+                    'background: #555 url(' . $si['random-image-' . $i . '-url'] . ');' .
+                    'background-size: cover;' .
+                    'background-position: center;' .
+                '}';
+                }
+                $rs .= '.intro { background-image: none; }';
+            }
+        }
+        $rs .= '</style>';
+        echo $rs;
+    }
+    public static function publicFooterContent()
+    {
+        # Settings
+        $sb = dcCore::app()->blog->settings->themes->get(dcCore::app()->blog->settings->system->theme . '_behavior');
+        $sb = $sb ? (unserialize($sb) ?: []) : [];
+
+        if (!is_array($sb)) {
+            $sb = [];
+        }
+
+        if (!isset($sb['default-image'])) {
+            $sb['default-image'] = 1;
+        }
+
+        if ($sb['default-image'] == 1) {
+            return;
+        }
+        echo
+        '<script>' . "\n" .
+            "$(document).ready(function() {
+            var round = parseInt(Math.random()*6);
+                $('header.intro').addClass('round'+round);
+            });" .
+        "</script>\n";
+    }
 
     public static function grayscaleSimpleMenu(ArrayObject $attr): string
     {
