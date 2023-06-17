@@ -36,12 +36,11 @@ class Prepend extends dcNsProcess
                 return;
             }
 
-            echo 
+            echo
             My::jsLoad('admin.js') . "\n" .
             My::jsLoad('popup_media.js') . "\n" .
             '<script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc" crossorigin="anonymous"></script>' . "\n" .
             My::cssLoad('admin.css') . "\n" ;
-
 
             dcCore::app()->auth->user_prefs->addWorkspace('accessibility');
             if (!dcCore::app()->auth->user_prefs->accessibility->nodragdrop) {

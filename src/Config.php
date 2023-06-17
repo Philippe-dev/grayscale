@@ -105,9 +105,9 @@ class Config extends dcNsProcess
             }
         }
 
-        dcCore::app()->admin->behavior  = $behavior;
-        dcCore::app()->admin->images    = $images;
-        dcCore::app()->admin->stickers  = $stickers;
+        dcCore::app()->admin->behavior = $behavior;
+        dcCore::app()->admin->images   = $images;
+        dcCore::app()->admin->stickers = $stickers;
 
         dcCore::app()->admin->conf_tab = $_POST['conf_tab'] ?? 'presentation';
 
@@ -271,7 +271,7 @@ class Config extends dcNsProcess
 
         echo '</div>';
         echo '</div>';
-        
+
         echo '<div class="fieldset">';
 
         echo '<h3>' . __('Random images') . '</h3>';
