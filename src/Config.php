@@ -109,7 +109,7 @@ class Config extends dcNsProcess
         dcCore::app()->admin->images   = $images;
         dcCore::app()->admin->stickers = $stickers;
 
-        dcCore::app()->admin->conf_tab = $_POST['conf_tab'] ?? 'presentation';
+        dcCore::app()->admin->conf_tab = $_POST['conf_tab'] ?? 'images';
 
         return self::$init;
     }
@@ -126,7 +126,7 @@ class Config extends dcNsProcess
         if (!empty($_POST)) {
             try {
                 // HTML
-                if (dcCore::app()->admin->conf_tab === 'presentation') {
+                if (dcCore::app()->admin->conf_tab === 'images') {
                     # random or default image behavior
                     $behavior['default-image'] = $_POST['default-image'];
 
@@ -167,7 +167,7 @@ class Config extends dcNsProcess
                     dcCore::app()->admin->images   = $images;
                 }
 
-                if (dcCore::app()->admin->conf_tab === 'links') {
+                if (dcCore::app()->admin->conf_tab === 'stickers') {
                     $stickers = [];
                     for ($i = 0; $i < count($_POST['sticker_image']); $i++) {
                         $stickers[] = [
@@ -228,7 +228,7 @@ class Config extends dcNsProcess
             echo '</form>';
         }
 
-        echo '<div class="multi-part" id="themes-list' . (dcCore::app()->admin->conf_tab === 'presentation' ? '' : '-presentation') . '" title="' . __('Images') . '">';
+        echo '<div class="multi-part" id="images" title="' . __('Images') . '">';
 
         echo '<form id="theme_config" action="' . dcCore::app()->adminurl->get('admin.blog.theme', ['conf' => '1']) .
             '" method="post" enctype="multipart/form-data">';
@@ -293,14 +293,14 @@ class Config extends dcNsProcess
         }
 
         echo '</div>';
-        echo '<p><input type="hidden" name="conf_tab" value="presentation" /></p>';
+        echo '<p><input type="hidden" name="conf_tab" value="images" /></p>';
         echo '<p class="clear"><input type="submit" value="' . __('Save') . '" />' . dcCore::app()->formNonce() . '</p>';
         echo form::hidden(['theme-url'], My::fileURL(''));
         echo form::hidden(['change-button-id'], '');
         echo '</form>';
         echo '</div>'; // Close tab
 
-        echo '<div class="multi-part" id="themes-list' . (dcCore::app()->admin->conf_tab === 'links' ? '' : '-links') . '" title="' . __('Stickers') . '">';
+        echo '<div class="multi-part" id="stickers" title="' . __('Stickers') . '">';
         echo '<form id="theme_config" action="' . dcCore::app()->adminurl->get('admin.blog.theme', ['conf' => '1']) .
             '" method="post" enctype="multipart/form-data">';
 
@@ -341,7 +341,7 @@ class Config extends dcNsProcess
             '</tbody>' .
             '</table></div>';
         echo '</div>';
-        echo '<p><input type="hidden" name="conf_tab" value="links" /></p>';
+        echo '<p><input type="hidden" name="conf_tab" value="stickers" /></p>';
         echo '<p class="clear">' . form::hidden('ds_order', '') . '<input type="submit" value="' . __('Save') . '" />' . dcCore::app()->formNonce() . '</p>';
         echo '</form>';
 
