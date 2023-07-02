@@ -15,19 +15,18 @@ declare(strict_types=1);
 namespace Dotclear\Theme\grayscale;
 
 use dcCore;
-use dcNsProcess;
-use dcPage;
+use Dotclear\Core\Process;
+use Dotclear\Core\Backend\Page;
 use Exception;
 use form;
 
-class Config extends dcNsProcess
+class Config extends Process
 {
     public static function init(): bool
     {
-        // limit to backend permissions
-        static::$init = My::checkContext(My::CONFIG);
 
-        if (!static::$init) {
+        // limit to backend permissions
+        if (!self::status(My::checkContext(My::CONFIG))) {
             return false;
         }
 
@@ -119,7 +118,7 @@ class Config extends dcNsProcess
      */
     public static function process(): bool
     {
-        if (!static::$init) {
+        if (!self::status()) {
             return false;
         }
 
@@ -206,7 +205,7 @@ class Config extends dcNsProcess
                 // Template cache reset
                 dcCore::app()->emptyTemplatesCache();
 
-                dcPage::success(__('Theme configuration upgraded.'), true, true);
+                Page::success(__('Theme configuration upgraded.'), true, true);
             } catch (Exception $e) {
                 dcCore::app()->error->add($e->getMessage());
             }
@@ -220,7 +219,7 @@ class Config extends dcNsProcess
      */
     public static function render(): void
     {
-        if (!static::$init) {
+        if (!self::status()) {
             return;
         }
 
@@ -347,7 +346,7 @@ class Config extends dcNsProcess
 
         echo '</div>'; // Close tab
 
-        dcPage::helpBlock('grayscale');
+        Page::helpBlock('grayscale');
 
         // Legacy mode
         if (!dcCore::app()->admin->standalone_config) {
