@@ -110,7 +110,7 @@ class Config extends Process
 
         dcCore::app()->admin->conf_tab = $_POST['conf_tab'] ?? 'images';
 
-        return self::$init;
+        return self::status();
     }
 
     /**
