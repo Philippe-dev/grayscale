@@ -1,12 +1,18 @@
 <?php
 /**
- * @package Dotclear
- * @subpackage Themes
+ * @file
+ * @brief 		The module backend helper resource
+ * @ingroup 	grayscale
  *
- * @copyright Olivier Meunier & Association Dotclear
- * @copyright GPL-2.0-only
+ * @package 	Dotclear
+ *
+ * @copyright 	Olivier Meunier & Association Dotclear
+ * @copyright 	GPL-2.0-only
  */
+declare(strict_types=1);
 
-if (!isset(dcCore::app()->resources['help']['grayscale'])) {
-    dcCore::app()->resources['help']['grayscale'] = dirname(__FILE__) . '/help/help.html';
-}
+namespace Dotclear\Theme\grayscale;
+
+use Dotclear\App;
+
+App::backend()->resources->set('help', 'grayscale', __DIR__ . '/help/help.html');
