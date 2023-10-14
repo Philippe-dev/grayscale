@@ -39,8 +39,8 @@ class Frontend extends Process
         # Templates
         App::behavior()->addBehavior('publicHeadContent', [self::class, 'publicHeadContent']);
         App::behavior()->addBehavior('publicFooterContent', [self::class, 'publicFooterContent']);
-        App::frontend()->tpl->addValue('grayscaleSimpleMenu', [self::class, 'grayscaleSimpleMenu']);
-        App::frontend()->tpl->addValue('grayscaleSocialLinks', [self::class, 'grayscaleSocialLinks']);
+        App::frontend()->template()->addValue('grayscaleSimpleMenu', [self::class, 'grayscaleSimpleMenu']);
+        App::frontend()->template()->addValue('grayscaleSocialLinks', [self::class, 'grayscaleSocialLinks']);
 
         return true;
     }
