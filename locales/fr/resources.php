@@ -15,4 +15,4 @@ namespace Dotclear\Theme\grayscale;
 
 use Dotclear\App;
 
-App::backend()->resources->set('help', 'grayscale', __DIR__ . '/help/help.html');
+App::backend()->resources()->set('help', 'grayscale', __DIR__ . '/help/help.html');
