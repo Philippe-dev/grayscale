@@ -877,11 +877,6 @@ ul.banner-social-buttons li {
   display: inline;
 }
 
-ul.banner-social-buttons li a {
-  padding: 1em;
-  margin: 0.2em;
-}
-
 ul.banner-social-buttons li .svg-inline--fa {
   margin-right: 0.5em;
 }
