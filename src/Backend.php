@@ -49,18 +49,6 @@ class Backend extends Process
                     Page::jsLoad('js/jquery/jquery.ui.touch-punch.js');
                 }
             });
-
-            App::behavior()->addBehavior('adminPageHTTPHeaderCSP', function ($csp) {
-                if (App::blog()->settings->system->theme !== My::id()) {
-                    return;
-                }
-
-                if (isset($csp['script-src'])) {
-                    $csp['script-src'] .= ' use.fontawesome.com';
-                } else {
-                    $csp['script-src'] = 'use.fontawesome.com';
-                }
-            });
         }
 
         return true;
