@@ -1,9 +1,6 @@
 'use strict';
 $(function () {
-  // only allow original size
-  $('input[name="src"]:last').prop('checked', true).trigger('change');
-
-  $('#media-select-cancel').on('click', () => {
+    $('#media-select-cancel').on('click', () => {
     window.close();
   });
   $('#media-select-ok').on('click', () => {
