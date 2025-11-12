@@ -4,18 +4,14 @@
 
 A Dotclear theme based on Start Bootstrap Grayscale template (see below)
 
-# [Start Bootstrap](http://startbootstrap.com/) - [Grayscale](http://startbootstrap.com/template-overviews/grayscale/)
+[Grayscale](http://startbootstrap.com/template-overviews/grayscale/)
 
-[Grayscale](http://startbootstrap.com/template-overviews/grayscale/) is a multipurpose, one page HTML theme for [Bootstrap](http://getbootstrap.com/) created by [Start Bootstrap](http://startbootstrap.com/). This template features various content sections and a Google Maps section with a custom map marker.
+Ce thème utilise le plugin Simple Menu pour la navigation en haut de page.
 
-## Creator
+La configuration du thème permet de choisir :
 
-Start Bootstrap was created by and is maintained by **David Miller**.
-
-* https://twitter.com/davidmillerskt
-* https://github.com/davidtmiller
-
-Start Bootstrap is based on the [Bootstrap](http://getbootstrap.com/) framework created by [Mark Otto](https://twitter.com/mdo) and [Jacob Thorton](https://twitter.com/fat).
+- l'image de fond utilisée : même image pour toutes les pages, ou image aléatoire. De plus, si le plugin Featured Media est installé, l'image à la une des billets peut être utilisée.
+- les icônes de liens vers les médias sociaux
 
 ## Copyright and License
 
