@@ -297,7 +297,7 @@ class Config
                                                 ->width(240)
                                                 ->height(160),
                                         ]),
-                                        (new Para())->class('simplegrayscale-buttons')->items([
+                                        (new Para())->class('grayscale-buttons')->items([
                                             (new Button('default-image-selector', __('Change')))
                                                 ->type('button')
                                                 ->id('default-image-selector'),
@@ -327,7 +327,7 @@ class Config
                                                 ->width(240)
                                                 ->height(160),
                                         ]),
-                                        (new Para())->class('simplegrayscale-buttons')->items([
+                                        (new Para())->class('grayscale-buttons')->items([
                                             (new Button('random-image-' . $i . '-selector', __('Change')))
                                                 ->type('button')
                                                 ->id('random-image-' . $i . '-selector'),
@@ -433,7 +433,7 @@ class Config
             ])
         ->render();
 
-        App::backend()->page()->helpBlock('simplegrayscale');
+        App::backend()->page()->helpBlock('grayscale');
 
         // Legacy mode
         if (!App::backend()->standalone_config) {
